@@ -36,7 +36,7 @@ class CourseCardFactory extends VmFactory<AppState, CourseCardConnector> {
 }
 
 class CourseCardViewModel extends Vm {
-  final UserModel coordinator;
+  final UserModel? coordinator;
   CourseCardViewModel({
     required this.coordinator,
   }) : super(equals: [

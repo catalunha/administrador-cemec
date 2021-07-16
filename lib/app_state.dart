@@ -1,4 +1,5 @@
 import 'package:administracao/coordinator/coordinator_state.dart';
+import 'package:administracao/team/team_state.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:administracao/course/course_state.dart';
 import 'package:administracao/login/login_state.dart';
@@ -14,6 +15,7 @@ class AppState {
   final UserState userState;
   final TeacherState teacherState;
   final CoordinatorState coordinatorState;
+  final TeamState teamState;
   final UploadState uploadState;
   final CourseState courseState;
   final ModuleState moduleState;
@@ -24,6 +26,7 @@ class AppState {
     required this.userState,
     required this.teacherState,
     required this.coordinatorState,
+    required this.teamState,
     required this.uploadState,
     required this.courseState,
     required this.moduleState,
@@ -36,6 +39,7 @@ class AppState {
         userState: UserState.initialState(),
         teacherState: TeacherState.initialState(),
         coordinatorState: CoordinatorState.initialState(),
+        teamState: TeamState.initialState(),
         uploadState: UploadState.initialState(),
         courseState: CourseState.initialState(),
         moduleState: ModuleState.initialState(),
@@ -47,6 +51,7 @@ class AppState {
     UserState? userState,
     TeacherState? teacherState,
     CoordinatorState? coordinatorState,
+    TeamState? teamState,
     UploadState? uploadState,
     CourseState? courseState,
     ModuleState? moduleState,
@@ -58,6 +63,7 @@ class AppState {
       userState: userState ?? this.userState,
       teacherState: teacherState ?? this.teacherState,
       coordinatorState: coordinatorState ?? this.coordinatorState,
+      teamState: teamState ?? this.teamState,
       uploadState: uploadState ?? this.uploadState,
       courseState: courseState ?? this.courseState,
       moduleState: moduleState ?? this.moduleState,
@@ -76,6 +82,7 @@ class AppState {
         other.loginState == loginState &&
         other.coordinatorState == coordinatorState &&
         other.teacherState == teacherState &&
+        other.teamState == teamState &&
         other.userState == userState &&
         other.resourceState == resourceState &&
         other.wait == wait;
@@ -90,6 +97,7 @@ class AppState {
         userState.hashCode ^
         coordinatorState.hashCode ^
         teacherState.hashCode ^
+        teamState.hashCode ^
         resourceState.hashCode ^
         wait.hashCode;
   }

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 class CourseCard extends StatelessWidget {
   final CourseModel courseModel;
-  final UserModel coordinator;
+  final UserModel? coordinator;
 
   const CourseCard({
     Key? key,

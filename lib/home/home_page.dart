@@ -70,7 +70,10 @@ class HomePage extends StatelessWidget {
         crossAxisCount: 2,
         children: [
           InkWell(
-            onTap: null,
+            onTap: () => Navigator.pushNamed(
+              context,
+              '/team',
+            ),
             child: Card(
               elevation: 10,
               child: Column(
