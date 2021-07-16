@@ -1,3 +1,4 @@
+import 'package:administracao/coordinator/coordinator_state.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:administracao/course/course_state.dart';
 import 'package:administracao/login/login_state.dart';
@@ -12,6 +13,7 @@ class AppState {
   final LoginState loginState;
   final UserState userState;
   final TeacherState teacherState;
+  final CoordinatorState coordinatorState;
   final UploadState uploadState;
   final CourseState courseState;
   final ModuleState moduleState;
@@ -21,6 +23,7 @@ class AppState {
     required this.loginState,
     required this.userState,
     required this.teacherState,
+    required this.coordinatorState,
     required this.uploadState,
     required this.courseState,
     required this.moduleState,
@@ -32,6 +35,7 @@ class AppState {
         loginState: LoginState.initialState(),
         userState: UserState.initialState(),
         teacherState: TeacherState.initialState(),
+        coordinatorState: CoordinatorState.initialState(),
         uploadState: UploadState.initialState(),
         courseState: CourseState.initialState(),
         moduleState: ModuleState.initialState(),
@@ -42,6 +46,7 @@ class AppState {
     LoginState? loginState,
     UserState? userState,
     TeacherState? teacherState,
+    CoordinatorState? coordinatorState,
     UploadState? uploadState,
     CourseState? courseState,
     ModuleState? moduleState,
@@ -52,6 +57,7 @@ class AppState {
       loginState: loginState ?? this.loginState,
       userState: userState ?? this.userState,
       teacherState: teacherState ?? this.teacherState,
+      coordinatorState: coordinatorState ?? this.coordinatorState,
       uploadState: uploadState ?? this.uploadState,
       courseState: courseState ?? this.courseState,
       moduleState: moduleState ?? this.moduleState,
@@ -68,6 +74,7 @@ class AppState {
         other.courseState == courseState &&
         other.uploadState == uploadState &&
         other.loginState == loginState &&
+        other.coordinatorState == coordinatorState &&
         other.teacherState == teacherState &&
         other.userState == userState &&
         other.resourceState == resourceState &&
@@ -81,6 +88,7 @@ class AppState {
         uploadState.hashCode ^
         loginState.hashCode ^
         userState.hashCode ^
+        coordinatorState.hashCode ^
         teacherState.hashCode ^
         resourceState.hashCode ^
         wait.hashCode;

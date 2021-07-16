@@ -1,4 +1,5 @@
 import 'package:administracao/course/course_card.dart';
+import 'package:administracao/course/course_card_connector.dart';
 import 'package:administracao/course/course_model.dart';
 import 'package:flutter/material.dart';
 
@@ -38,7 +39,7 @@ class CourseListPage extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: courseModelList
-                    .map((e) => CourseCard(courseModel: e))
+                    .map((e) => CourseCardConnector(courseModel: e))
                     .toList(),
               ),
             ),

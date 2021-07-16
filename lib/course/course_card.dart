@@ -1,10 +1,18 @@
+import 'package:administracao/coordinator/coordinator_tile.dart';
 import 'package:administracao/course/course_model.dart';
 import 'package:administracao/theme/app_text_styles.dart';
+import 'package:administracao/user/user_model.dart';
 import 'package:flutter/material.dart';
 
 class CourseCard extends StatelessWidget {
   final CourseModel courseModel;
-  const CourseCard({Key? key, required this.courseModel}) : super(key: key);
+  final UserModel coordinator;
+
+  const CourseCard({
+    Key? key,
+    required this.courseModel,
+    required this.coordinator,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +37,9 @@ class CourseCard extends StatelessWidget {
                   ),
             title: Text('${courseModel.title}',
                 style: AppTextStyles.titleBoldHeading),
+          ),
+          CoordinatorTile(
+            coordinator: coordinator,
           ),
           Padding(
             padding: const EdgeInsets.only(left: 10),
