@@ -1,7 +1,6 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:administracao/app_state.dart';
 import 'package:administracao/routes.dart';
-import 'package:administracao/theme/app_colors.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -11,8 +10,6 @@ final navigatorKey = GlobalKey<NavigatorState>();
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  // Intl.defaultLocale = 'pt_BR';
-  // initializeDateFormatting();
   store = Store<AppState>(initialState: AppState.initialState());
   NavigateAction.setNavigatorKey(navigatorKey);
   runApp(MyApp());
@@ -24,11 +21,8 @@ class MyApp extends StatelessWidget {
     return StoreProvider<AppState>(
       store: store,
       child: MaterialApp(
-        title: 'CEMEC Administração',
-        theme: ThemeData(
-          primaryColor: AppColors.primary,
-          primarySwatch: Colors.orange,
-        ),
+        title: 'CEMEC Administrador',
+        theme: ThemeData.dark(),
         navigatorKey: navigatorKey,
         routes: Routes.routes,
         initialRoute: '/',

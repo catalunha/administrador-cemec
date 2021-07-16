@@ -12,15 +12,14 @@ class HomePageConnector extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, HomeViewModel>(
       vm: () => HomeViewModelFactory(this),
-      // onInit: (store) => store.dispatch(GetCollectionBillAction()),
-      // onInit: (store) => store.dispatch(StreamDocsBillAction()),
       builder: (context, vm) => HomePage(
         signOut: vm.signOut,
-        userPhotoUrl: vm.userPhotoUrl,
-        // userPhoneNumber: vm.userPhoneNumber,
-        userDisplayName: vm.userDisplayName,
-        // userEmail: vm.userEmail,
-        // userUid: vm.userUid,
+        photoUrl: vm.photoUrl,
+        phoneNumber: vm.phoneNumber,
+        displayName: vm.displayName,
+        uid: vm.uid,
+        id: vm.id,
+        email: vm.email,
       ),
     );
   }
@@ -31,35 +30,40 @@ class HomeViewModelFactory extends VmFactory<AppState, HomePageConnector> {
   @override
   HomeViewModel fromStore() => HomeViewModel(
         signOut: () => dispatch(SignOutLoginAction()),
-        userPhotoUrl: state.loginState.userFirebaseAuth?.photoURL ?? '',
-        userPhoneNumber: state.loginState.userFirebaseAuth?.phoneNumber ?? '',
-        userDisplayName: state.loginState.userFirebaseAuth?.displayName ?? '',
-        userEmail: state.loginState.userFirebaseAuth?.email ?? '',
-        userUid: state.loginState.userFirebaseAuth?.uid ?? '',
+        photoUrl: state.userState.userCurrent!.photoURL ?? '',
+        phoneNumber: state.userState.userCurrent!.phoneNumber ?? '',
+        displayName: state.userState.userCurrent!.displayName ?? '',
+        email: state.userState.userCurrent!.email,
+        uid: state.loginState.userFirebaseAuth?.uid ?? '',
+        id: state.userState.userCurrent!.id,
       );
 }
 
 class HomeViewModel extends Vm {
   final VoidCallback signOut;
 
-  final String userPhotoUrl;
-  final String userPhoneNumber;
-  final String userDisplayName;
-  final String userEmail;
-  final String userUid;
-
+  final String displayName;
+  final String photoUrl;
+  final String phoneNumber;
+  final String email;
+  final String uid;
+  final String id;
   HomeViewModel({
     required this.signOut,
-    required this.userPhotoUrl,
-    required this.userPhoneNumber,
-    required this.userDisplayName,
-    required this.userEmail,
-    required this.userUid,
-  }) : super(equals: [
-          userPhotoUrl,
-          userPhoneNumber,
-          userDisplayName,
-          userEmail,
-          userUid,
-        ]);
+    required this.photoUrl,
+    required this.phoneNumber,
+    required this.displayName,
+    required this.email,
+    required this.uid,
+    required this.id,
+  }) : super(
+          equals: [
+            photoUrl,
+            phoneNumber,
+            displayName,
+            email,
+            uid,
+            id,
+          ],
+        );
 }
