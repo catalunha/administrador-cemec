@@ -1,6 +1,8 @@
 import 'package:administracao/course/course_addedit_connector.dart';
 import 'package:administracao/course/course_archived_connector.dart';
 import 'package:administracao/course/course_list_connector.dart';
+import 'package:administracao/course/course_student_list_connector.dart';
+import 'package:administracao/course/course_collegiate_connector.dart';
 import 'package:administracao/module/module_addedit_connector.dart';
 import 'package:administracao/module/module_connector.dart';
 import 'package:administracao/resource/resource_connector.dart';
@@ -18,6 +20,12 @@ class Routes {
     '/course': (BuildContext context) => CourseListConnector(),
     '/course_addedit': (BuildContext context) => CourseAddEditConnector(
           addOrEditId: ModalRoute.of(context)!.settings.arguments.toString(),
+        ),
+    '/course_teacher': (BuildContext context) => CourseCollegiateConnector(
+          courseId: ModalRoute.of(context)!.settings.arguments.toString(),
+        ),
+    '/course_student': (BuildContext context) => CourseStudentListConnector(
+          courseId: ModalRoute.of(context)!.settings.arguments.toString(),
         ),
     '/course_archived': (BuildContext context) => CourseArchivedConnector(),
     '/module': (BuildContext context) => ModuleConnector(

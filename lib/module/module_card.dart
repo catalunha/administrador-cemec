@@ -83,13 +83,13 @@ class ModuleCard extends StatelessWidget {
           ),
           Wrap(
             children: [
-              IconButton(
-                icon: Icon(Icons.edit),
-                onPressed: () async {
-                  Navigator.pushNamed(context, '/module_addedit',
-                      arguments: moduleModel.id);
-                },
-              ),
+              // IconButton(
+              //   icon: Icon(Icons.edit),
+              //   onPressed: () async {
+              //     Navigator.pushNamed(context, '/module_addedit',
+              //         arguments: moduleModel.id);
+              //   },
+              // ),
               IconButton(
                 icon: Icon(Icons.view_carousel_outlined),
                 onPressed: () async {

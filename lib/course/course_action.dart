@@ -1,4 +1,5 @@
 import 'package:administracao/coordinator/coordinator_state.dart';
+import 'package:administracao/teacher/teacher_state.dart';
 import 'package:administracao/user/user_model.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -68,27 +69,27 @@ class UpdateDocCourseAction extends ReduxAction<AppState> {
   }
 }
 
-class ReadDocsCourseAction extends ReduxAction<AppState> {
-  @override
-  Future<AppState?> reduce() async {
-    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-    QuerySnapshot<Map<String, dynamic>> querySnapshot = await firebaseFirestore
-        .collection(CourseModel.collection)
-        .where('coordinatorUserId', isEqualTo: state.userState.userCurrent!.id)
-        .where('isDeleted', isEqualTo: false)
-        .get();
-    List<CourseModel> courseModelList = querySnapshot.docs
-        .map(
-          (queryDocumentSnapshot) => CourseModel.fromMap(
-            queryDocumentSnapshot.id,
-            queryDocumentSnapshot.data(),
-          ),
-        )
-        .toList();
-    dispatch(SetCourseModelListCourseAction(courseModelList: courseModelList));
-    return null;
-  }
-}
+// class ReadDocsCourseAction extends ReduxAction<AppState> {
+//   @override
+//   Future<AppState?> reduce() async {
+//     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+//     QuerySnapshot<Map<String, dynamic>> querySnapshot = await firebaseFirestore
+//         .collection(CourseModel.collection)
+//         .where('coordinatorUserId', isEqualTo: state.userState.userCurrent!.id)
+//         .where('isDeleted', isEqualTo: false)
+//         .get();
+//     List<CourseModel> courseModelList = querySnapshot.docs
+//         .map(
+//           (queryDocumentSnapshot) => CourseModel.fromMap(
+//             queryDocumentSnapshot.id,
+//             queryDocumentSnapshot.data(),
+//           ),
+//         )
+//         .toList();
+//     dispatch(SetCourseModelListCourseAction(courseModelList: courseModelList));
+//     return null;
+//   }
+// }
 
 class StreamDocsCourseAction extends ReduxAction<AppState> {
   @override
@@ -173,13 +174,6 @@ class ReadDocCoordinatorOfModuleListModuleAction extends ReduxAction<AppState> {
   }
 }
 
-// class ReadDocCoordinatorOfModuleListModuleAction extends ReduxAction<AppState> {
-//   @override
-//   AppState reduce() {
-//     return state.copyWith()
-//   }
-// }
-
 class UpdateModuleOrderCourseAction extends ReduxAction<AppState> {
   final String id;
   final bool isUnionOrRemove;
@@ -203,5 +197,31 @@ class UpdateModuleOrderCourseAction extends ReduxAction<AppState> {
       });
     }
     return null;
+  }
+}
+
+class ReadDocsCollegiateCourseAction extends ReduxAction<AppState> {
+  @override
+  Future<AppState?> reduce() async {
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+    state.copyWith(teacherState: TeacherState.initialState());
+    List<UserModel> collegiate = [];
+    if (state.courseState.courseModelCurrent!.collegiate != null) {
+      for (String userId in state.courseState.courseModelCurrent!.collegiate!) {
+        DocumentReference<Map<String, dynamic>> docRef =
+            firebaseFirestore.collection(UserModel.collection).doc(userId);
+        DocumentSnapshot<Map<String, dynamic>> doc = await docRef.get();
+        UserModel userModel = UserModel.fromMap(doc.id, doc.data()!);
+        if (!collegiate.contains(userModel)) {
+          collegiate.add(userModel);
+        }
+      }
+    }
+    print('--> ReadDocsCollegiateCourseAction ${collegiate.length}');
+    return state.copyWith(
+      teacherState: state.teacherState.copyWith(
+        teacherList: collegiate,
+      ),
+    );
   }
 }

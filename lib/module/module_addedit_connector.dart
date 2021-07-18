@@ -1,7 +1,7 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:administracao/app_state.dart';
 import 'package:administracao/module/module_action.dart';
-import 'package:administracao/module/module_addedit.page.dart';
+import 'package:administracao/module/module_addedit_page.dart';
 import 'package:administracao/module/module_model.dart';
 import 'package:administracao/teacher/teacher_action.dart';
 import 'package:flutter/material.dart';

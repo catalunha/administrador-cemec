@@ -41,66 +41,86 @@ class TeamPage extends StatelessWidget {
           Expanded(
             child: Wrap(
               children: [
-                Stack(children: [
-                  Text(countAll),
-                  IconButton(
-                    onPressed: () {
-                      setPeopleInApp(PeopleInApp.all);
-                    },
-                    icon: Icon(Icons.people),
-                    color: peopleInApp.name == 'all'
-                        ? Colors.yellow
-                        : Theme.of(context).iconTheme.color,
-                  ),
-                ]),
-                Stack(children: [
-                  Text(countCoordinator),
-                  IconButton(
-                    onPressed: () {
-                      setPeopleInApp(PeopleInApp.coordinator);
-                    },
-                    icon: Icon(Icons.folder_shared_outlined),
-                    color: peopleInApp.name == 'coordinator'
-                        ? Colors.yellow
-                        : Theme.of(context).iconTheme.color,
-                  ),
-                ]),
-                Stack(children: [
-                  Text(countTeacher),
-                  IconButton(
-                    onPressed: () {
-                      setPeopleInApp(PeopleInApp.teacher);
-                    },
-                    icon: Icon(Icons.assignment_ind_outlined),
-                    color: peopleInApp.name == 'teacher'
-                        ? Colors.yellow
-                        : Theme.of(context).iconTheme.color,
-                  ),
-                ]),
-                Stack(children: [
-                  Text(countAdministrator),
-                  IconButton(
-                    onPressed: () {
-                      setPeopleInApp(PeopleInApp.administrator);
-                    },
-                    icon: Icon(Icons.manage_accounts_outlined),
-                    color: peopleInApp.name == 'administrator'
-                        ? Colors.yellow
-                        : Theme.of(context).iconTheme.color,
-                  ),
-                ]),
-                Stack(children: [
-                  Text(countStudent),
-                  IconButton(
-                    onPressed: () {
-                      setPeopleInApp(PeopleInApp.student);
-                    },
-                    icon: Icon(Icons.sentiment_satisfied_alt_outlined),
-                    color: peopleInApp.name == 'student'
-                        ? Colors.yellow
-                        : Theme.of(context).iconTheme.color,
-                  ),
-                ]),
+                Stack(
+                  alignment: Alignment.topCenter,
+                  children: [
+                    Text(countAll),
+                    IconButton(
+                      padding: EdgeInsets.only(top: 10),
+                      onPressed: () {
+                        setPeopleInApp(PeopleInApp.all);
+                      },
+                      icon: Icon(Icons.people),
+                      color: peopleInApp.name == 'all'
+                          ? Colors.yellow
+                          : Theme.of(context).iconTheme.color,
+                    ),
+                  ],
+                ),
+                Stack(
+                  alignment: Alignment.topCenter,
+                  children: [
+                    Text(countCoordinator),
+                    IconButton(
+                      padding: EdgeInsets.only(top: 10),
+                      onPressed: () {
+                        setPeopleInApp(PeopleInApp.coordinator);
+                      },
+                      icon: Icon(Icons.folder_shared_outlined),
+                      color: peopleInApp.name == 'coordinator'
+                          ? Colors.yellow
+                          : Theme.of(context).iconTheme.color,
+                    ),
+                  ],
+                ),
+                Stack(
+                  alignment: Alignment.topCenter,
+                  children: [
+                    Text(countTeacher),
+                    IconButton(
+                      padding: EdgeInsets.only(top: 10),
+                      onPressed: () {
+                        setPeopleInApp(PeopleInApp.teacher);
+                      },
+                      icon: Icon(Icons.assignment_ind_outlined),
+                      color: peopleInApp.name == 'teacher'
+                          ? Colors.yellow
+                          : Theme.of(context).iconTheme.color,
+                    ),
+                  ],
+                ),
+                Stack(
+                  alignment: Alignment.topCenter,
+                  children: [
+                    Text(countAdministrator),
+                    IconButton(
+                      padding: EdgeInsets.only(top: 10),
+                      onPressed: () {
+                        setPeopleInApp(PeopleInApp.administrator);
+                      },
+                      icon: Icon(Icons.manage_accounts_outlined),
+                      color: peopleInApp.name == 'administrator'
+                          ? Colors.yellow
+                          : Theme.of(context).iconTheme.color,
+                    ),
+                  ],
+                ),
+                Stack(
+                  alignment: Alignment.topCenter,
+                  children: [
+                    Text(countStudent),
+                    IconButton(
+                      padding: EdgeInsets.only(top: 10),
+                      onPressed: () {
+                        setPeopleInApp(PeopleInApp.student);
+                      },
+                      icon: Icon(Icons.sentiment_satisfied_alt_outlined),
+                      color: peopleInApp.name == 'student'
+                          ? Colors.yellow
+                          : Theme.of(context).iconTheme.color,
+                    ),
+                  ],
+                ),
 
                 // IconButton(
                 //   onPressed: null,

@@ -4,29 +4,29 @@ import 'package:administracao/app_state.dart';
 import 'package:administracao/course/course_action.dart';
 import 'package:administracao/module/module_model.dart';
 
-class ReadDocsModuleAction extends ReduxAction<AppState> {
-  @override
-  Future<AppState?> reduce() async {
-    print('--> ReadDocsModuleAction');
-    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-    QuerySnapshot<Map<String, dynamic>> querySnapshot = await firebaseFirestore
-        .collection(ModuleModel.collection)
-        .where('courseId', isEqualTo: state.courseState.courseModelCurrent!.id)
-        .where('isDeleted', isEqualTo: false)
-        .get();
-    List<ModuleModel> moduleModelList = [];
-    moduleModelList = querySnapshot.docs
-        .map(
-          (queryDocumentSnapshot) => ModuleModel.fromMap(
-            queryDocumentSnapshot.id,
-            queryDocumentSnapshot.data(),
-          ),
-        )
-        .toList();
-    dispatch(SetModuleModelListModuleAction(moduleModelList: moduleModelList));
-    return null;
-  }
-}
+// class ReadDocsModuleAction extends ReduxAction<AppState> {
+//   @override
+//   Future<AppState?> reduce() async {
+//     print('--> ReadDocsModuleAction');
+//     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+//     QuerySnapshot<Map<String, dynamic>> querySnapshot = await firebaseFirestore
+//         .collection(ModuleModel.collection)
+//         .where('courseId', isEqualTo: state.courseState.courseModelCurrent!.id)
+//         .where('isDeleted', isEqualTo: false)
+//         .get();
+//     List<ModuleModel> moduleModelList = [];
+//     moduleModelList = querySnapshot.docs
+//         .map(
+//           (queryDocumentSnapshot) => ModuleModel.fromMap(
+//             queryDocumentSnapshot.id,
+//             queryDocumentSnapshot.data(),
+//           ),
+//         )
+//         .toList();
+//     dispatch(SetModuleModelListModuleAction(moduleModelList: moduleModelList));
+//     return null;
+//   }
+// }
 
 class StreamDocsModuleAction extends ReduxAction<AppState> {
   @override

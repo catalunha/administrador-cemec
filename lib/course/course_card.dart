@@ -109,14 +109,32 @@ class CourseCard extends StatelessWidget {
           Wrap(
             children: [
               IconButton(
-                icon: Icon(Icons.edit),
+                tooltip: 'Professores deste curso',
+                icon: Icon(Icons.assignment_ind_outlined),
                 onPressed: () async {
-                  Navigator.pushNamed(context, '/course_addedit',
+                  Navigator.pushNamed(context, '/course_teacher',
                       arguments: courseModel.id);
                 },
               ),
               IconButton(
-                icon: Icon(Icons.post_add_outlined),
+                tooltip: 'alunos deste curso',
+                icon: Icon(Icons.sentiment_satisfied_alt_outlined),
+                onPressed: () async {
+                  Navigator.pushNamed(context, '/course_student',
+                      arguments: courseModel.id);
+                },
+              ),
+              // IconButton(
+              //   tooltip: 'Editar este curso',
+              //   icon: Icon(Icons.edit),
+              //   onPressed: () async {
+              //     Navigator.pushNamed(context, '/course_addedit',
+              //         arguments: courseModel.id);
+              //   },
+              // ),
+              IconButton(
+                tooltip: 'Modulos deste curso',
+                icon: Icon(Icons.play_lesson_outlined),
                 onPressed: () async {
                   Navigator.pushNamed(context, '/module',
                       arguments: courseModel.id);
