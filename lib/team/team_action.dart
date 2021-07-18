@@ -67,3 +67,17 @@ class SetPersonTeamAction extends ReduxAction<AppState> {
     );
   }
 }
+
+class SetPeopleInAppTeamAction extends ReduxAction<AppState> {
+  final PeopleInApp peopleInApp;
+
+  SetPeopleInAppTeamAction({required this.peopleInApp});
+  @override
+  AppState reduce() {
+    return state.copyWith(
+      teamState: state.teamState.copyWith(
+        peopleInApp: peopleInApp,
+      ),
+    );
+  }
+}

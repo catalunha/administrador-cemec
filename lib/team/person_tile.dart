@@ -26,7 +26,7 @@ class PersonTile extends StatelessWidget {
                   ),
             title: Text(person!.displayName ?? ''),
             subtitle: Text(
-                'email: ${person!.email}\nMobile: ${person!.phoneNumber ?? ""}'),
+                'email: ${person!.email}\nMobile: ${person!.phoneNumber ?? ""}\n${person!.id}'),
           )
         : Container();
   }

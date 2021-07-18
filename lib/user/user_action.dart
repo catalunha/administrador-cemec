@@ -141,3 +141,30 @@ class CreateDocWithGoogleAccountUserAction extends ReduxAction<AppState> {
     return null;
   }
 }
+
+class UpdateAppListUserAction extends ReduxAction<AppState> {
+  final String userId;
+  final String app;
+  final bool isUnionOrRemove;
+  UpdateAppListUserAction({
+    required this.userId,
+    required this.app,
+    required this.isUnionOrRemove,
+  });
+  @override
+  Future<AppState?> reduce() async {
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+    DocumentReference docRef =
+        firebaseFirestore.collection(UserModel.collection).doc(userId);
+    if (isUnionOrRemove) {
+      await docRef.update({
+        'appList': FieldValue.arrayUnion([app])
+      });
+    } else {
+      await docRef.update({
+        'appList': FieldValue.arrayRemove([app])
+      });
+    }
+    return null;
+  }
+}
