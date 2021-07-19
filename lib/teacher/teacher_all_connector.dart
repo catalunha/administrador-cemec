@@ -1,20 +1,20 @@
 import 'package:administracao/course/course_action.dart';
+import 'package:administracao/teacher/teacher_all.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:administracao/app_state.dart';
-import 'package:administracao/teacher/teacher_list.dart';
 import 'package:administracao/user/user_model.dart';
 import 'package:flutter/material.dart';
 
-class TeacherListConnector extends StatelessWidget {
+class TeacherAllConnector extends StatelessWidget {
   final String label;
 
-  const TeacherListConnector({Key? key, required this.label}) : super(key: key);
+  const TeacherAllConnector({Key? key, required this.label}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, TeacherListViewModel>(
-      vm: () => TeacherListFactory(this),
-      builder: (context, vm) => TeacherList(
+    return StoreConnector<AppState, TeacherAllViewModel>(
+      vm: () => TeacherAllFactory(this),
+      builder: (context, vm) => TeacherAll(
         label: label,
         teacherList: vm.teacherList,
         updateTeacherInCollegiate: vm.updateTeacherInCollegiate,
@@ -23,11 +23,11 @@ class TeacherListConnector extends StatelessWidget {
   }
 }
 
-class TeacherListFactory extends VmFactory<AppState, TeacherListConnector> {
-  TeacherListFactory(widget) : super(widget);
+class TeacherAllFactory extends VmFactory<AppState, TeacherAllConnector> {
+  TeacherAllFactory(widget) : super(widget);
   @override
-  TeacherListViewModel fromStore() => TeacherListViewModel(
-        teacherList: teacherList(),
+  TeacherAllViewModel fromStore() => TeacherAllViewModel(
+        teacherList: state.teacherState.teacherList!,
         updateTeacherInCollegiate: (String teacherId, bool isUnionOrRemove) {
           dispatch(UpdateTeacherInCollegiateCourseAction(
             teacherId: teacherId,
@@ -51,10 +51,10 @@ class TeacherListFactory extends VmFactory<AppState, TeacherListConnector> {
   }
 }
 
-class TeacherListViewModel extends Vm {
+class TeacherAllViewModel extends Vm {
   final List<UserModel> teacherList;
   final Function(String, bool) updateTeacherInCollegiate;
-  TeacherListViewModel({
+  TeacherAllViewModel({
     required this.teacherList,
     required this.updateTeacherInCollegiate,
   }) : super(equals: [

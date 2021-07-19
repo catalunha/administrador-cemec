@@ -1,9 +1,9 @@
 import 'package:administracao/user/user_model.dart';
 import 'package:flutter/material.dart';
 
-class TeacherCard extends StatelessWidget {
+class TeacherTile extends StatelessWidget {
   final UserModel teacher;
-  const TeacherCard({Key? key, required this.teacher}) : super(key: key);
+  const TeacherTile({Key? key, required this.teacher}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,8 @@ class TeacherCard extends StatelessWidget {
               ),
             ),
       title: Text(teacher.displayName ?? ''),
-      subtitle: Text('email: ${teacher.email}\nMobile: ${teacher.phoneNumber}'),
+      subtitle: Text(
+          'email: ${teacher.email}\nMobile: ${teacher.phoneNumber}\nId: ${teacher.id}'),
     );
   }
 }

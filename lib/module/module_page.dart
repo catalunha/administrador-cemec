@@ -77,12 +77,12 @@ class _ModulePageState extends State<ModulePage> {
           // ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () async {
-          Navigator.pushNamed(context, '/module_addedit', arguments: '');
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   child: Icon(Icons.add),
+      //   onPressed: () async {
+      //     Navigator.pushNamed(context, '/module_addedit', arguments: '');
+      //   },
+      // ),
     );
   }
 

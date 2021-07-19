@@ -6,27 +6,32 @@ import 'package:collection/collection.dart';
 class TeacherState {
   final UserModel? teacherCurrent;
   final List<UserModel>? teacherList;
+  final List<UserModel>? collegiate;
   static UserModel? selectTeacher(AppState state, String teacherId) =>
       state.teacherState.teacherList!
           .firstWhereOrNull((element) => element.id == teacherId);
   TeacherState({
     this.teacherCurrent,
     this.teacherList,
+    this.collegiate,
   });
   factory TeacherState.initialState() => TeacherState(
         teacherCurrent: null,
         teacherList: [],
+        collegiate: [],
       );
 
   TeacherState copyWith({
     UserModel? teacherCurrent,
     bool teacherCurrentNull = false,
     List<UserModel>? teacherList,
+    List<UserModel>? collegiate,
   }) {
     return TeacherState(
       teacherCurrent:
           teacherCurrentNull ? null : teacherCurrent ?? this.teacherCurrent,
       teacherList: teacherList ?? this.teacherList,
+      collegiate: collegiate ?? this.collegiate,
     );
   }
 
@@ -40,9 +45,11 @@ class TeacherState {
 
     return other is TeacherState &&
         other.teacherCurrent == teacherCurrent &&
-        listEquals(other.teacherList, teacherList);
+        listEquals(other.teacherList, teacherList) &&
+        listEquals(other.collegiate, collegiate);
   }
 
   @override
-  int get hashCode => teacherCurrent.hashCode ^ teacherList.hashCode;
+  int get hashCode =>
+      collegiate.hashCode ^ teacherCurrent.hashCode ^ teacherList.hashCode;
 }

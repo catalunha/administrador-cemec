@@ -1,11 +1,12 @@
-import 'package:administracao/coordinator/coordinator_state.dart';
-import 'package:administracao/teacher/teacher_state.dart';
-import 'package:administracao/user/user_model.dart';
+import 'package:administracao/course/course_state.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:administracao/app_state.dart';
+import 'package:administracao/coordinator/coordinator_state.dart';
 import 'package:administracao/course/course_model.dart';
+import 'package:administracao/teacher/teacher_state.dart';
+import 'package:administracao/user/user_model.dart';
 
 class SetCourseCurrentCourseAction extends ReduxAction<AppState> {
   final String id;
@@ -33,6 +34,30 @@ class SetCourseCurrentCourseAction extends ReduxAction<AppState> {
     return state.copyWith(
       courseState: state.courseState.copyWith(
         courseModelCurrent: courseModel,
+      ),
+    );
+  }
+
+  void after() async {
+    if (id.isNotEmpty) {
+      await dispatch(ReadCoordinatorCurrentOfCourseCourseAction(
+          coordinatorId:
+              state.courseState.courseModelCurrent!.coordinatorUserId));
+      await dispatch(ReadDocsCollegiateCourseAction());
+    }
+  }
+}
+
+class SetCoordinatorCurrentCoordinatorAction extends ReduxAction<AppState> {
+  final String? id;
+  SetCoordinatorCurrentCoordinatorAction({
+    required this.id,
+  });
+  @override
+  AppState? reduce() {
+    return state.copyWith(
+      courseState: state.courseState.copyWith(
+        coordinatorCurrent: CourseState.selectCoordinator(state, id!),
       ),
     );
   }
@@ -142,11 +167,12 @@ class SetCourseModelListCourseAction extends ReduxAction<AppState> {
       dispatch(SetCourseCurrentCourseAction(
           id: state.courseState.courseModelCurrent!.id));
     }
-    dispatch(ReadDocCoordinatorOfModuleListModuleAction());
+    dispatch(ReadCoordinatorListOfCourseListCourseAction());
   }
 }
 
-class ReadDocCoordinatorOfModuleListModuleAction extends ReduxAction<AppState> {
+class ReadCoordinatorListOfCourseListCourseAction
+    extends ReduxAction<AppState> {
   @override
   Future<AppState?> reduce() async {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
@@ -169,6 +195,37 @@ class ReadDocCoordinatorOfModuleListModuleAction extends ReduxAction<AppState> {
     return state.copyWith(
       coordinatorState: state.coordinatorState.copyWith(
         coordinatorList: coordinatorList,
+      ),
+    );
+  }
+}
+
+class ReadCoordinatorCurrentOfCourseCourseAction extends ReduxAction<AppState> {
+  final String coordinatorId;
+  ReadCoordinatorCurrentOfCourseCourseAction({
+    required this.coordinatorId,
+  });
+  @override
+  Future<AppState> reduce() async {
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+    // state.copyWith(coordinatorState: CoordinatorState.initialState());
+    // List<UserModel> coordinatorList = [];
+
+    // for (CourseModel courseModel in state.courseState.courseModelList!) {
+    DocumentReference<Map<String, dynamic>> docRef =
+        firebaseFirestore.collection(UserModel.collection).doc(coordinatorId);
+    DocumentSnapshot<Map<String, dynamic>> doc = await docRef.get();
+    UserModel userModel = UserModel.fromMap(doc.id, doc.data()!);
+    // if (!coordinatorList.contains(userModel)) {
+    //   coordinatorList.add(userModel);
+    // }
+    // }
+
+    // print(
+    //     '--> ReadDocCoordinatorOfModuleListModuleAction ${coordinatorList.length}');
+    return state.copyWith(
+      courseState: state.courseState.copyWith(
+        coordinatorCurrent: userModel,
       ),
     );
   }
@@ -202,7 +259,7 @@ class UpdateModuleOrderCourseAction extends ReduxAction<AppState> {
 
 class ReadDocsCollegiateCourseAction extends ReduxAction<AppState> {
   @override
-  Future<AppState?> reduce() async {
+  Future<AppState> reduce() async {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     state.copyWith(teacherState: TeacherState.initialState());
     List<UserModel> collegiate = [];
@@ -220,8 +277,34 @@ class ReadDocsCollegiateCourseAction extends ReduxAction<AppState> {
     print('--> ReadDocsCollegiateCourseAction ${collegiate.length}');
     return state.copyWith(
       teacherState: state.teacherState.copyWith(
-        teacherList: collegiate,
+        collegiate: collegiate,
       ),
     );
+  }
+}
+
+class UpdateTeacherInCollegiateCourseAction extends ReduxAction<AppState> {
+  final String teacherId;
+  final bool isUnionOrRemove;
+  UpdateTeacherInCollegiateCourseAction({
+    required this.teacherId,
+    required this.isUnionOrRemove,
+  });
+  @override
+  Future<AppState?> reduce() async {
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+    DocumentReference docRef = firebaseFirestore
+        .collection(CourseModel.collection)
+        .doc(state.courseState.courseModelCurrent!.id);
+    if (isUnionOrRemove) {
+      await docRef.update({
+        'collegiate': FieldValue.arrayUnion([teacherId])
+      });
+    } else {
+      await docRef.update({
+        'collegiate': FieldValue.arrayRemove([teacherId])
+      });
+    }
+    return null;
   }
 }

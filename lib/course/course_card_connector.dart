@@ -2,6 +2,7 @@ import 'package:administracao/app_state.dart';
 import 'package:administracao/coordinator/coordinator_state.dart';
 import 'package:administracao/course/course_card.dart';
 import 'package:administracao/course/course_model.dart';
+import 'package:administracao/course/course_state.dart';
 import 'package:administracao/user/user_model.dart';
 import 'package:async_redux/async_redux.dart';
 
@@ -29,7 +30,7 @@ class CourseCardFactory extends VmFactory<AppState, CourseCardConnector> {
   CourseCardFactory(widget) : super(widget);
   @override
   CourseCardViewModel fromStore() => CourseCardViewModel(
-        coordinator: CoordinatorState.selectCoordinator(
+        coordinator: CourseState.selectCoordinator(
             state, widget!.courseModel.coordinatorUserId),
       );
 }

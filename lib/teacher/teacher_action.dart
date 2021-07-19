@@ -1,3 +1,4 @@
+import 'package:administracao/course/course_model.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:administracao/app_state.dart';

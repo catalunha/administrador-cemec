@@ -46,12 +46,12 @@ class CourseListPage extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () async {
-          Navigator.pushNamed(context, '/course_addedit', arguments: '');
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   child: Icon(Icons.add),
+      //   onPressed: () async {
+      //     Navigator.pushNamed(context, '/course_addedit', arguments: '');
+      //   },
+      // ),
     );
   }
 }

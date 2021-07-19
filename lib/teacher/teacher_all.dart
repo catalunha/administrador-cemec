@@ -2,11 +2,11 @@ import 'package:administracao/teacher/teacher_tile.dart';
 import 'package:administracao/user/user_model.dart';
 import 'package:flutter/material.dart';
 
-class TeacherList extends StatelessWidget {
+class TeacherAll extends StatelessWidget {
   final String label;
   final List<UserModel> teacherList;
   final Function(String, bool) updateTeacherInCollegiate;
-  const TeacherList({
+  const TeacherAll({
     Key? key,
     required this.teacherList,
     required this.updateTeacherInCollegiate,

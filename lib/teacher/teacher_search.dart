@@ -1,4 +1,4 @@
-import 'package:administracao/teacher/teacher_card.dart';
+import 'package:administracao/teacher/teacher_tile.dart';
 import 'package:administracao/teacher/teacher_list_connector.dart';
 import 'package:administracao/theme/app_colors.dart';
 import 'package:administracao/user/user_model.dart';
@@ -62,7 +62,7 @@ class TeacherSearch extends StatelessWidget {
                       ? Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            TeacherCard(teacher: teacher!),
+                            TeacherTile(teacher: teacher!),
                             ListTile(
                               title: Text(
                                 'Retirar este professor deste môdulo',
