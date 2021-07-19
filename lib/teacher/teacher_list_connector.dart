@@ -38,11 +38,10 @@ class TeacherListFactory extends VmFactory<AppState, TeacherListConnector> {
       );
 
   List<UserModel> teacherList() {
-    print('collegiate ${state.courseState.courseModelCurrent?.collegiate}');
+    print('collegiate ${state.courseState.course?.collegiate}');
     List<UserModel> teacherThisCourse = [];
     for (UserModel teacher in state.teacherState.teacherList!) {
-      if (state.courseState.courseModelCurrent!.collegiate!
-          .contains(teacher.id)) {
+      if (state.courseState.course!.collegiate!.contains(teacher.id)) {
         teacherThisCourse.add(teacher);
       }
     }

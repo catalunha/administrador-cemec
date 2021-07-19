@@ -1,3 +1,4 @@
+import 'package:administracao/course/course_state.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:administracao/course/course_model.dart';
 import 'package:administracao/module/module_action.dart';
@@ -23,12 +24,12 @@ class ResourceConnector extends StatelessWidget {
     return StoreConnector<AppState, ResourceViewModel>(
       onInit: (store) async {
         await store.dispatch(SetModuleCurrentModuleAction(id: moduleId));
-        if (store.state.moduleState.moduleModelCurrent!.teacherUserId != null) {
-          store.dispatch(SetTeacherCurrentTeacherAction(
-              id: store.state.moduleState.moduleModelCurrent!.teacherUserId!));
-        } else {
-          store.dispatch(SetTeacherCurrentTeacherAction(id: null));
-        }
+        // if (store.state.moduleState.moduleModelCurrent!.teacherUserId != null) {
+        //   store.dispatch(SetTeacherCurrentTeacherAction(
+        //       id: store.state.moduleState.moduleModelCurrent!.teacherUserId!));
+        // } else {
+        //   store.dispatch(SetTeacherCurrentTeacherAction(id: null));
+        // }
         store.dispatch(StreamDocsResourceAction());
       },
       vm: () => ResourceFactory(this),
@@ -37,6 +38,7 @@ class ResourceConnector extends StatelessWidget {
         moduleModel: vm.moduleModel,
         resourceModelList: vm.resourceModelList,
         teacher: vm.teacher,
+        coordinator: vm.coordinator,
       ),
     );
   }
@@ -45,24 +47,36 @@ class ResourceConnector extends StatelessWidget {
 class ResourceFactory extends VmFactory<AppState, ResourceConnector> {
   ResourceFactory(widget) : super(widget);
   ResourceViewModel fromStore() => ResourceViewModel(
-        courseModel: state.courseState.courseModelCurrent!,
+        courseModel: state.courseState.course!,
+        coordinator: state.courseState.coordinator!,
         moduleModel: state.moduleState.moduleModelCurrent!,
         resourceModelList: state.resourceState.resourceModelList!,
-        teacher: state.teacherState.teacherCurrent,
+        teacher: selectTeacher(),
       );
+  selectTeacher() {
+    if (state.moduleState.moduleModelCurrent!.teacherUserId != null) {
+      UserModel? temp = CourseState.selectTeacherInCollegiate(
+          state, state.moduleState.moduleModelCurrent!.teacherUserId!);
+      return temp;
+    }
+    return null;
+  }
 }
 
 class ResourceViewModel extends Vm {
   final CourseModel courseModel;
+  final UserModel coordinator;
+
   final ModuleModel moduleModel;
-  final List<ResourceModel> resourceModelList;
   final UserModel? teacher;
+  final List<ResourceModel> resourceModelList;
 
   ResourceViewModel({
-    required this.resourceModelList,
     required this.courseModel,
+    required this.coordinator,
     required this.moduleModel,
     this.teacher,
+    required this.resourceModelList,
   }) : super(equals: [
           resourceModelList,
           courseModel,

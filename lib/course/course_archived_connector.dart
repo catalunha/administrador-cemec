@@ -28,8 +28,8 @@ class HomeViewModelFactory
   HomeViewModel fromStore() => HomeViewModel(
         courseModelList: CourseState.selectCourseArchived(state),
         unArchived: (String id) {
-          dispatch(SetCourseCurrentCourseAction(id: id));
-          CourseModel courseModel = state.courseState.courseModelCurrent!;
+          dispatch(SetCourseCourseAction(id: id));
+          CourseModel courseModel = state.courseState.course!;
           courseModel = courseModel.copyWith(isArchivedByCoord: false);
           dispatch(UpdateDocCourseAction(courseModel: courseModel));
         },

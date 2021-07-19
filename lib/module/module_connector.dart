@@ -1,8 +1,7 @@
+import 'package:administracao/user/user_model.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:administracao/course/course_model.dart';
-import 'package:administracao/teacher/teacher_action.dart';
 import 'package:flutter/material.dart';
-
 import 'package:administracao/app_state.dart';
 import 'package:administracao/course/course_action.dart';
 import 'package:administracao/module/module_action.dart';
@@ -20,43 +19,39 @@ class ModuleConnector extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, ModuleViewModel>(
       onInit: (store) async {
-        store.dispatch(SetCourseCurrentCourseAction(id: courseId));
-        await store.dispatch(ReadDocsTeacherAction());
+        await store.dispatch(SetCourseCourseAction(id: courseId));
         store.dispatch(StreamDocsModuleAction());
       },
-      vm: () => ModuleFactory(this),
+      vm: () => ModuleViewModelFactory(this),
       builder: (context, vm) => ModulePage(
         courseModel: vm.courseModel,
+        coordinator: vm.coordinator,
         moduleModelList: vm.moduleModelList,
-        onChangeModuleOrder: vm.onChangeModuleOrder,
       ),
     );
   }
 }
 
-class ModuleFactory extends VmFactory<AppState, ModuleConnector> {
-  ModuleFactory(widget) : super(widget);
+class ModuleViewModelFactory extends VmFactory<AppState, ModuleConnector> {
+  ModuleViewModelFactory(widget) : super(widget);
   ModuleViewModel fromStore() => ModuleViewModel(
-        courseModel: state.courseState.courseModelCurrent!,
+        courseModel: state.courseState.course!,
+        coordinator: state.courseState.coordinator!,
         moduleModelList: state.moduleState.moduleModelList!,
-        onChangeModuleOrder: (List<String> moduleOrder) {
-          CourseModel courseModel = state.courseState.courseModelCurrent!;
-          courseModel = courseModel.copyWith(moduleOrder: moduleOrder);
-          dispatch(UpdateDocCourseAction(courseModel: courseModel));
-        },
       );
 }
 
 class ModuleViewModel extends Vm {
   final CourseModel courseModel;
+  final UserModel? coordinator;
   final List<ModuleModel> moduleModelList;
-  final Function(List<String>) onChangeModuleOrder;
   ModuleViewModel({
     required this.courseModel,
+    required this.coordinator,
     required this.moduleModelList,
-    required this.onChangeModuleOrder,
   }) : super(equals: [
           courseModel,
+          coordinator,
           moduleModelList,
         ]);
 }

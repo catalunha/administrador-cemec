@@ -17,11 +17,11 @@ class CourseAddEditConnector extends StatelessWidget {
     return StoreConnector<AppState, CourseAddEditViewModel>(
       onInit: (store) {
         store.dispatch(RestartingStateUploadAction());
-        store.dispatch(SetCourseCurrentCourseAction(id: addOrEditId));
+        store.dispatch(SetCourseCourseAction(id: addOrEditId));
         if (addOrEditId.isNotEmpty &&
-            store.state.courseState.courseModelCurrent!.iconUrl != null) {
+            store.state.courseState.course!.iconUrl != null) {
           store.dispatch(SetUrlForDownloadUploadAction(
-              url: store.state.courseState.courseModelCurrent!.iconUrl!));
+              url: store.state.courseState.course!.iconUrl!));
         }
       },
       vm: () => CourseAddEditFactory(this),
@@ -37,8 +37,7 @@ class CourseAddEditFactory extends VmFactory<AppState, CourseAddEditConnector> {
   CourseAddEditFactory(widget) : super(widget);
   @override
   CourseAddEditViewModel fromStore() => CourseAddEditViewModel(
-        formController:
-            FormController(courseModel: state.courseState.courseModelCurrent!),
+        formController: FormController(courseModel: state.courseState.course!),
         onSave: (CourseModel courseModel) {
           courseModel = courseModel.copyWith(
               coordinatorUserId: state.userState.userCurrent!.id);

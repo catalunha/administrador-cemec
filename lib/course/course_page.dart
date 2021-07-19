@@ -1,11 +1,10 @@
-import 'package:administracao/course/course_card.dart';
 import 'package:administracao/course/course_card_connector.dart';
 import 'package:administracao/course/course_model.dart';
 import 'package:flutter/material.dart';
 
-class CourseListPage extends StatelessWidget {
+class CoursePage extends StatelessWidget {
   final List<CourseModel> courseModelList;
-  const CourseListPage({
+  const CoursePage({
     Key? key,
     required this.courseModelList,
   }) : super(key: key);
@@ -21,9 +20,12 @@ class CourseListPage extends StatelessWidget {
           Expanded(
             flex: 1,
             child: Align(
-              alignment: Alignment.topRight,
+              alignment: Alignment.centerRight,
               child: Wrap(
+                crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
+                  Text('0 cursos ativos.    '),
+                  Text('${courseModelList.length} cursos propostos.    '),
                   IconButton(
                       onPressed: () => Navigator.pushNamed(
                             context,

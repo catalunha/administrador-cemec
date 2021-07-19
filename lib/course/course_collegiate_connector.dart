@@ -1,4 +1,3 @@
-import 'package:administracao/coordinator/coordinator_action.dart';
 import 'package:administracao/teacher/teacher_action.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
@@ -20,13 +19,12 @@ class CourseCollegiateConnector extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, CourseCollegiateViewModel>(
       onInit: (store) async {
-        store.dispatch(SetCourseCurrentCourseAction(id: courseId));
-        store.dispatch(SetCoordinatorCurrentCoordinatorAction(
-            id: store.state.courseState.courseModelCurrent!.coordinatorUserId));
-        // await store.dispatch(ReadCoordinatorCurrentOfCourseCourseAction(
-        //     coordinatorId:
-        //         store.state.courseState.courseModelCurrent!.coordinatorUserId));
-        await store.dispatch(ReadDocsCollegiateCourseAction());
+        await store.dispatch(SetCourseCourseAction(id: courseId));
+        // store.dispatch(SetCoordinatorCurrentCoordinatorAction(
+        //     id: store.state.courseState.course!.coordinatorUserId));
+        // await store.dispatch(GetCoordinatorOfCourseCourseAction(
+        //     coordinatorId: store.state.courseState.course!.coordinatorUserId));
+        // await store.dispatch(GetDocsCollegiateCourseAction());
       },
       vm: () => CourseCollegiateViewModelFactory(this),
       builder: (context, vm) => CourseCollegiatePage(
@@ -44,9 +42,9 @@ class CourseCollegiateViewModelFactory
   CourseCollegiateViewModelFactory(widget) : super(widget);
   @override
   CourseCollegiateViewModel fromStore() => CourseCollegiateViewModel(
-        collegiate: state.teacherState.collegiate!,
-        coordinator: state.courseState.coordinatorCurrent!,
-        courseModel: state.courseState.courseModelCurrent!,
+        collegiate: state.courseState.collegiate!,
+        coordinator: state.courseState.coordinator,
+        courseModel: state.courseState.course,
         getTeacher: () async {
           await dispatch(ReadDocsTeacherAction());
         },
@@ -55,8 +53,8 @@ class CourseCollegiateViewModelFactory
 
 class CourseCollegiateViewModel extends Vm {
   final List<UserModel> collegiate;
-  final UserModel coordinator;
-  final CourseModel courseModel;
+  final UserModel? coordinator;
+  final CourseModel? courseModel;
   final VoidCallback getTeacher;
   CourseCollegiateViewModel({
     required this.collegiate,

@@ -30,7 +30,7 @@ class CourseCardFactory extends VmFactory<AppState, CourseCardConnector> {
   CourseCardFactory(widget) : super(widget);
   @override
   CourseCardViewModel fromStore() => CourseCardViewModel(
-        coordinator: CourseState.selectCoordinator(
+        coordinator: CoordinatorState.selectCoordinator(
             state, widget!.courseModel.coordinatorUserId),
       );
 }

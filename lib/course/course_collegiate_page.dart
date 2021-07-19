@@ -9,8 +9,8 @@ import 'package:administracao/user/user_model.dart';
 
 class CourseCollegiatePage extends StatelessWidget {
   final List<UserModel> collegiate;
-  final UserModel coordinator;
-  final CourseModel courseModel;
+  final UserModel? coordinator;
+  final CourseModel? courseModel;
   final VoidCallback getTeacher;
 
   const CourseCollegiatePage({
@@ -25,32 +25,33 @@ class CourseCollegiatePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Professores deste curso'),
+        title: Text('Colegiado do curso'),
       ),
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Card(
-            elevation: 10,
-            margin: EdgeInsets.only(left: 10, right: 10, bottom: 5),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            child: CourseTile(
-              courseModel: courseModel,
-            ),
-          ),
-          // coordinator != null
-          //     ?
-          Card(
-            elevation: 10,
-            margin: EdgeInsets.only(left: 15, right: 15),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            child: CoordinatorTile(
-              coordinator: coordinator,
-            ),
-          ),
-          // : Container(),
+          courseModel != null
+              ? Card(
+                  elevation: 10,
+                  margin: EdgeInsets.only(left: 10, right: 10, bottom: 5),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  child: CourseTile(
+                    courseModel: courseModel,
+                  ),
+                )
+              : Container(),
+          coordinator != null
+              ? Card(
+                  elevation: 10,
+                  margin: EdgeInsets.only(left: 15, right: 15),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  child: CoordinatorTile(
+                    coordinator: coordinator,
+                  ),
+                )
+              : Container(),
           Expanded(
             flex: 15,
             child: SingleChildScrollView(

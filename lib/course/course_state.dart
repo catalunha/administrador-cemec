@@ -5,66 +5,70 @@ import 'package:flutter/foundation.dart';
 import 'package:collection/collection.dart';
 
 class CourseState {
-  final List<CourseModel>? courseModelList;
-  final CourseModel? courseModelCurrent;
-  final UserModel? coordinatorCurrent;
+  final List<CourseModel>? courseList;
+  final CourseModel? course;
+  final UserModel? coordinator;
+  final List<UserModel>? collegiate;
 
   static List<CourseModel> selectCourseNotArchived(AppState state) =>
-      state.courseState.courseModelList!
+      state.courseState.courseList!
           .where((element) => element.isArchivedByAdm == false)
           .toList();
   static List<CourseModel> selectCourseArchived(AppState state) =>
-      state.courseState.courseModelList!
+      state.courseState.courseList!
           .where((element) => element.isArchivedByAdm == true)
           .toList();
-  static UserModel? selectCoordinator(AppState state, String coordinatorId) =>
-      state.coordinatorState.coordinatorList!
-          .firstWhereOrNull((element) => element.id == coordinatorId);
+  static UserModel? selectTeacherInCollegiate(
+          AppState state, String teacherId) =>
+      state.courseState.collegiate!
+          .firstWhereOrNull((element) => element.id == teacherId);
   CourseState({
-    this.courseModelList,
-    this.courseModelCurrent,
-    this.coordinatorCurrent,
+    this.courseList,
+    this.course,
+    this.coordinator,
+    this.collegiate,
   });
   factory CourseState.initialState() => CourseState(
-        courseModelList: [],
-        courseModelCurrent: null,
-        coordinatorCurrent: null,
+        courseList: [],
+        course: null,
+        coordinator: null,
+        collegiate: [],
       );
   CourseState copyWith({
-    List<CourseModel>? courseModelList,
-    CourseModel? courseModelCurrent,
-    bool courseModelCurrentNull = false,
-    UserModel? coordinatorCurrent,
-    bool coordinatorCurrentNull = false,
+    List<CourseModel>? courseList,
+    CourseModel? course,
+    bool courseSetNull = false,
+    UserModel? coordinator,
+    bool coordinatorSetNull = false,
+    List<UserModel>? collegiate,
   }) {
     return CourseState(
-      courseModelList: courseModelList ?? this.courseModelList,
-      courseModelCurrent: courseModelCurrentNull
-          ? null
-          : courseModelCurrent ?? this.courseModelCurrent,
-      coordinatorCurrent: coordinatorCurrentNull
-          ? null
-          : coordinatorCurrent ?? this.coordinatorCurrent,
+      courseList: courseList ?? this.courseList,
+      course: courseSetNull ? null : course ?? this.course,
+      coordinator: coordinatorSetNull ? null : coordinator ?? this.coordinator,
+      collegiate: collegiate ?? this.collegiate,
     );
   }
 
   @override
   String toString() =>
-      'CourseState(courseModelCurrent: $courseModelCurrent, courseModelList: $courseModelList)';
+      'CourseState(courseModelCurrent: $course, courseModelList: $courseList)';
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
     return other is CourseState &&
-        other.courseModelCurrent == courseModelCurrent &&
-        other.coordinatorCurrent == coordinatorCurrent &&
-        listEquals(other.courseModelList, courseModelList);
+        other.course == course &&
+        other.coordinator == coordinator &&
+        listEquals(other.collegiate, collegiate) &&
+        listEquals(other.courseList, courseList);
   }
 
   @override
   int get hashCode =>
-      coordinatorCurrent.hashCode ^
-      courseModelCurrent.hashCode ^
-      courseModelList.hashCode;
+      collegiate.hashCode ^
+      coordinator.hashCode ^
+      course.hashCode ^
+      courseList.hashCode;
 }

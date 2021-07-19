@@ -1,4 +1,6 @@
+import 'package:administracao/coordinator/coordinator_tile.dart';
 import 'package:administracao/course/course_model.dart';
+import 'package:administracao/course/course_tile.dart';
 import 'package:administracao/module/module_model.dart';
 import 'package:administracao/resource/resource_card.dart';
 import 'package:administracao/resource/resource_model.dart';
@@ -8,9 +10,11 @@ import 'package:flutter/material.dart';
 
 class ResourcePage extends StatelessWidget {
   final CourseModel courseModel;
+  final UserModel coordinator;
+
   final ModuleModel moduleModel;
-  final List<ResourceModel> resourceModelList;
   final UserModel? teacher;
+  final List<ResourceModel> resourceModelList;
 
   const ResourcePage({
     Key? key,
@@ -18,6 +22,7 @@ class ResourcePage extends StatelessWidget {
     required this.courseModel,
     required this.moduleModel,
     this.teacher,
+    required this.coordinator,
   }) : super(key: key);
 
   @override
@@ -28,36 +33,58 @@ class ResourcePage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 16, top: 4, right: 16),
-            child: Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15)),
-              // color: Colors.lightBlue,
-              elevation: 10,
-              child: Column(
-                children: [
-                  ListTile(
-                    leading: courseModel.iconUrl == null
-                        ? Icon(Icons.favorite_outline_rounded)
-                        : Container(
-                            height: 48,
-                            width: 48,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              image: DecorationImage(
-                                image: NetworkImage(courseModel.iconUrl!),
-                              ),
-                            ),
-                          ),
-                    title: Text(
-                      courseModel.title,
-                      style: AppTextStyles.titleBoldHeading,
-                    ),
-                  ),
-                ],
-              ),
+          Card(
+            elevation: 10,
+            margin: EdgeInsets.only(left: 10, right: 10, bottom: 5),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            child: CourseTile(
+              courseModel: courseModel,
             ),
+          ),
+          Card(
+            elevation: 10,
+            margin: EdgeInsets.only(left: 15, right: 15),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            child: CoordinatorTile(
+              coordinator: coordinator,
+            ),
+          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(left: 16, top: 4, right: 16),
+          //   child: Card(
+          //     shape: RoundedRectangleBorder(
+          //         borderRadius: BorderRadius.circular(15)),
+          //     // color: Colors.lightBlue,
+          //     elevation: 10,
+          //     child: Column(
+          //       children: [
+          //         ListTile(
+          //           leading: courseModel.iconUrl == null
+          //               ? Icon(Icons.favorite_outline_rounded)
+          //               : Container(
+          //                   height: 48,
+          //                   width: 48,
+          //                   decoration: BoxDecoration(
+          //                     borderRadius: BorderRadius.circular(5),
+          //                     image: DecorationImage(
+          //                       image: NetworkImage(courseModel.iconUrl!),
+          //                     ),
+          //                   ),
+          //                 ),
+          //           title: Text(
+          //             courseModel.title,
+          //             style: AppTextStyles.titleBoldHeading,
+          //           ),
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // ),
+          Text(
+            moduleModel.title,
+            style: AppTextStyles.titleBoldHeading,
           ),
           Padding(
             padding: const EdgeInsets.only(left: 8, top: 4, right: 8),
@@ -65,13 +92,15 @@ class ResourcePage extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),
               elevation: 10,
+              margin: EdgeInsets.only(left: 15, right: 15),
+
               // color: Colors.lightBlueAccent,
               child: Column(
                 children: [
-                  Text(
-                    moduleModel.title,
-                    style: AppTextStyles.titleBoldHeading,
-                  ),
+                  // Text(
+                  //   moduleModel.title,
+                  //   style: AppTextStyles.titleBoldHeading,
+                  // ),
                   teacher != null
                       ? ListTile(
                           leading: teacher == null ||
@@ -97,41 +126,41 @@ class ResourcePage extends StatelessWidget {
               ),
             ),
           ),
-          // Expanded(
-          //   child: SingleChildScrollView(
-          //     child: Column(
-          //       children: resourceModelList
-          //           .map((e) => ResourceCard(resourceModel: e))
-          //           .toList(),
-          //     ),
-          //   ),
-          // ),
           Expanded(
             child: SingleChildScrollView(
               child: Column(
-                children: buildItens(context),
+                children: resourceModelList
+                    .map((e) => ResourceCard(resourceModel: e))
+                    .toList(),
               ),
             ),
           ),
+          // Expanded(
+          //   child: SingleChildScrollView(
+          //     child: Column(
+          //       children: buildItens(context),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
   }
 
-  buildItens(context) {
-    List<Widget> list = [];
-    Map<String, ResourceModel> map = Map.fromIterable(
-      resourceModelList,
-      key: (element) => element.id,
-      value: (element) => element,
-    );
-    for (var index in moduleModel.resourceOrder!) {
-      if (map[index] != null) {
-        list.add(Container(
-            key: ValueKey(index),
-            child: ResourceCard(resourceModel: map[index]!)));
-      }
-    }
-    return list;
-  }
+  // buildItens(context) {
+  //   List<Widget> list = [];
+  //   Map<String, ResourceModel> map = Map.fromIterable(
+  //     resourceModelList,
+  //     key: (element) => element.id,
+  //     value: (element) => element,
+  //   );
+  //   for (var index in moduleModel.resourceOrder!) {
+  //     if (map[index] != null) {
+  //       list.add(Container(
+  //           key: ValueKey(index),
+  //           child: ResourceCard(resourceModel: map[index]!)));
+  //     }
+  //   }
+  //   return list;
+  // }
 }

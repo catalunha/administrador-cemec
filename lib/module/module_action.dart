@@ -36,7 +36,7 @@ class StreamDocsModuleAction extends ReduxAction<AppState> {
     Query<Map<String, dynamic>> collRef;
     collRef = firebaseFirestore
         .collection(ModuleModel.collection)
-        .where('courseId', isEqualTo: state.courseState.courseModelCurrent!.id)
+        .where('courseId', isEqualTo: state.courseState.course!.id)
         .where('isDeleted', isEqualTo: false);
 
     Stream<QuerySnapshot<Map<String, dynamic>>> streamQuerySnapshot =

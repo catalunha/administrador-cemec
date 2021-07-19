@@ -1,8 +1,8 @@
+import 'package:administracao/course/course_state.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:administracao/app_state.dart';
 import 'package:administracao/module/module_card.dart';
 import 'package:administracao/module/module_model.dart';
-import 'package:administracao/teacher/teacher_state.dart';
 import 'package:administracao/user/user_model.dart';
 import 'package:flutter/material.dart';
 
@@ -33,8 +33,8 @@ class ModuleCardFactory extends VmFactory<AppState, ModuleCardConnector> {
 
   selectTeacher() {
     if (widget!.moduleModel.teacherUserId != null) {
-      UserModel? temp =
-          TeacherState.selectTeacher(state, widget!.moduleModel.teacherUserId!);
+      UserModel? temp = CourseState.selectTeacherInCollegiate(
+          state, widget!.moduleModel.teacherUserId!);
       return temp;
     }
     return null;

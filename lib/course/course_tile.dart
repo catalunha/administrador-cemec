@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:administracao/course/course_model.dart';
 
 class CourseTile extends StatelessWidget {
-  final CourseModel courseModel;
+  final CourseModel? courseModel;
 
   const CourseTile({
     Key? key,
@@ -14,7 +14,7 @@ class CourseTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: courseModel.iconUrl == null
+      leading: courseModel?.iconUrl == null
           ? Icon(Icons.favorite_outline_rounded)
           : Container(
               height: 48,
@@ -22,12 +22,12 @@ class CourseTile extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
                 image: DecorationImage(
-                  image: NetworkImage(courseModel.iconUrl!),
+                  image: NetworkImage(courseModel!.iconUrl!),
                 ),
               ),
             ),
       title:
-          Text('${courseModel.title}', style: AppTextStyles.titleBoldHeading),
+          Text('${courseModel?.title}', style: AppTextStyles.titleBoldHeading),
     );
   }
 }

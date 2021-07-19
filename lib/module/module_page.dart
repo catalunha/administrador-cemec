@@ -1,25 +1,25 @@
+import 'package:administracao/coordinator/coordinator_tile.dart';
 import 'package:administracao/course/course_model.dart';
+import 'package:administracao/course/course_tile.dart';
 import 'package:administracao/module/module_card_connector.dart';
 import 'package:administracao/module/module_model.dart';
+import 'package:administracao/theme/app_text_styles.dart';
+import 'package:administracao/user/user_model.dart';
 import 'package:flutter/material.dart';
 
-class ModulePage extends StatefulWidget {
+class ModulePage extends StatelessWidget {
   final CourseModel courseModel;
+  final UserModel? coordinator;
+
   final List<ModuleModel> moduleModelList;
-  final Function(List<String>) onChangeModuleOrder;
 
   const ModulePage({
     Key? key,
     required this.moduleModelList,
     required this.courseModel,
-    required this.onChangeModuleOrder,
+    this.coordinator,
   }) : super(key: key);
 
-  @override
-  _ModulePageState createState() => _ModulePageState();
-}
-
-class _ModulePageState extends State<ModulePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,93 +27,44 @@ class _ModulePageState extends State<ModulePage> {
         title: Text('Módulos deste curso'),
       ),
       body: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 8, top: 4, right: 8),
-            child: Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15)),
-              elevation: 10,
-              // color: Colors.lightBlue,
+          Card(
+            elevation: 10,
+            margin: EdgeInsets.only(left: 10, right: 10, bottom: 5),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            child: CourseTile(
+              courseModel: courseModel,
+            ),
+          ),
+          Card(
+            elevation: 10,
+            margin: EdgeInsets.only(left: 15, right: 15),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            child: CoordinatorTile(
+              coordinator: coordinator,
+            ),
+          ),
+          Text(
+            '${moduleModelList.length} môdulo(s) e ${courseModel.collegiate!.length} professor(es)',
+            style: AppTextStyles.titleBoldHeading,
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          Expanded(
+            child: SingleChildScrollView(
               child: Column(
-                children: [
-                  ListTile(
-                    leading: widget.courseModel.iconUrl == null
-                        ? Icon(Icons.favorite_outline_rounded)
-                        : Container(
-                            height: 48,
-                            width: 48,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              image: DecorationImage(
-                                image:
-                                    NetworkImage(widget.courseModel.iconUrl!),
-                              ),
-                            ),
-                          ),
-                    title: Text(widget.courseModel.title),
-                    subtitle: Text(
-                        'Com ${widget.courseModel.moduleOrder!.length} môdulos.'),
-                  ),
-                ],
+                children: moduleModelList
+                    .map((e) => ModuleCardConnector(moduleModel: e))
+                    .toList(),
               ),
             ),
           ),
-          Expanded(
-            child: ReorderableListView(
-              scrollDirection: Axis.vertical,
-              onReorder: _onReorder,
-              children: buildItens(context),
-            ),
-          ),
-          // Expanded(
-          //   child: SingleChildScrollView(
-          //     child: Column(
-          //       children: moduleModelList
-          //           .map((e) => ModuleCardConnector(moduleModel: e))
-          //           .toList(),
-          //     ),
-          //   ),
-          // ),
         ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   child: Icon(Icons.add),
-      //   onPressed: () async {
-      //     Navigator.pushNamed(context, '/module_addedit', arguments: '');
-      //   },
-      // ),
     );
-  }
-
-  buildItens(context) {
-    List<Widget> list = [];
-    Map<String, ModuleModel> map = Map.fromIterable(
-      widget.moduleModelList,
-      key: (element) => element.id,
-      value: (element) => element,
-    );
-    for (var index in widget.courseModel.moduleOrder!) {
-      if (map[index] != null) {
-        list.add(Container(
-            key: ValueKey(index),
-            child: ModuleCardConnector(moduleModel: map[index]!)));
-      }
-    }
-    setState(() {});
-    return list;
-  }
-
-  void _onReorder(int oldIndex, int newIndex) {
-    setState(() {
-      if (newIndex > oldIndex) {
-        newIndex -= 1;
-      }
-    });
-    List<String> moduleOrderTemp = widget.courseModel.moduleOrder!;
-    String moduleId = moduleOrderTemp[oldIndex];
-    moduleOrderTemp.removeAt(oldIndex);
-    moduleOrderTemp.insert(newIndex, moduleId);
-    widget.onChangeModuleOrder(moduleOrderTemp);
   }
 }

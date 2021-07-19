@@ -1,12 +1,14 @@
+import 'package:administracao/app_state.dart';
 import 'package:administracao/user/user_model.dart';
 import 'package:flutter/foundation.dart';
+import 'package:collection/collection.dart';
 
 class CoordinatorState {
   // final UserModel? coordinatorCurrent;
   final List<UserModel>? coordinatorList;
-  // static UserModel? selectCoordinator(AppState state, String coordinatorId) =>
-  //     state.coordinatorState.coordinatorList!
-  //         .firstWhereOrNull((element) => element.id == coordinatorId);
+  static UserModel? selectCoordinator(AppState state, String coordinatorId) =>
+      state.coordinatorState.coordinatorList!
+          .firstWhereOrNull((element) => element.id == coordinatorId);
   CoordinatorState({
     // this.coordinatorCurrent,
     this.coordinatorList,
