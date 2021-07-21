@@ -1,4 +1,5 @@
 import 'package:administracao/team/team_state.dart';
+import 'package:administracao/theme/app_icon.dart';
 import 'package:flutter/material.dart';
 
 import 'package:administracao/team/person_card.dart';
@@ -50,7 +51,7 @@ class TeamPage extends StatelessWidget {
                       onPressed: () {
                         setPeopleInApp(PeopleInApp.all);
                       },
-                      icon: Icon(Icons.people),
+                      icon: Icon(AppIconData.people),
                       color: peopleInApp.name == 'all'
                           ? Colors.yellow
                           : Theme.of(context).iconTheme.color,
@@ -66,7 +67,7 @@ class TeamPage extends StatelessWidget {
                       onPressed: () {
                         setPeopleInApp(PeopleInApp.coordinator);
                       },
-                      icon: Icon(Icons.folder_shared_outlined),
+                      icon: Icon(AppIconData.coordinator),
                       color: peopleInApp.name == 'coordinator'
                           ? Colors.yellow
                           : Theme.of(context).iconTheme.color,
@@ -82,7 +83,7 @@ class TeamPage extends StatelessWidget {
                       onPressed: () {
                         setPeopleInApp(PeopleInApp.teacher);
                       },
-                      icon: Icon(Icons.assignment_ind_outlined),
+                      icon: Icon(AppIconData.teacher),
                       color: peopleInApp.name == 'teacher'
                           ? Colors.yellow
                           : Theme.of(context).iconTheme.color,
@@ -98,7 +99,7 @@ class TeamPage extends StatelessWidget {
                       onPressed: () {
                         setPeopleInApp(PeopleInApp.administrator);
                       },
-                      icon: Icon(Icons.manage_accounts_outlined),
+                      icon: Icon(AppIconData.administrator),
                       color: peopleInApp.name == 'administrator'
                           ? Colors.yellow
                           : Theme.of(context).iconTheme.color,
@@ -114,7 +115,7 @@ class TeamPage extends StatelessWidget {
                       onPressed: () {
                         setPeopleInApp(PeopleInApp.student);
                       },
-                      icon: Icon(Icons.sentiment_satisfied_alt_outlined),
+                      icon: Icon(AppIconData.student),
                       color: peopleInApp.name == 'student'
                           ? Colors.yellow
                           : Theme.of(context).iconTheme.color,

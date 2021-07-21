@@ -1,4 +1,5 @@
 import 'package:administracao/team/person_tile.dart';
+import 'package:administracao/theme/app_icon.dart';
 import 'package:administracao/user/user_model.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +30,7 @@ class PersonCard extends StatelessWidget {
                   }
                 },
                 icon: Icon(
-                  Icons.folder_shared_outlined,
+                  AppIconData.coordinator,
                   color: person!.appList.contains('coordinator')
                       ? Colors.yellow
                       : Theme.of(context).iconTheme.color,
@@ -44,7 +45,7 @@ class PersonCard extends StatelessWidget {
                   }
                 },
                 icon: Icon(
-                  Icons.assignment_ind_outlined,
+                  AppIconData.teacher,
                   color: person!.appList.contains('teacher')
                       ? Colors.yellow
                       : Theme.of(context).iconTheme.color,
@@ -59,7 +60,7 @@ class PersonCard extends StatelessWidget {
                   }
                 },
                 icon: Icon(
-                  Icons.manage_accounts_outlined,
+                  AppIconData.administrator,
                   color: person!.appList.contains('administrator')
                       ? Colors.yellow
                       : Theme.of(context).iconTheme.color,
@@ -74,7 +75,7 @@ class PersonCard extends StatelessWidget {
                   }
                 },
                 icon: Icon(
-                  Icons.sentiment_satisfied_alt_outlined,
+                  AppIconData.student,
                   color: person!.appList.contains('student')
                       ? Colors.yellow
                       : Theme.of(context).iconTheme.color,

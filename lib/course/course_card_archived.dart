@@ -1,4 +1,5 @@
 import 'package:administracao/course/course_model.dart';
+import 'package:administracao/theme/app_icon.dart';
 import 'package:flutter/material.dart';
 
 class CourseCardArchived extends StatelessWidget {
@@ -19,7 +20,7 @@ class CourseCardArchived extends StatelessWidget {
         children: [
           ListTile(
             leading: courseModel.iconUrl == null
-                ? Icon(Icons.favorite_outline_rounded)
+                ? Icon(AppIconData.undefined)
                 // : CircleAvatar(
                 //     // radius: 20,
                 //     child: Image.network(courseModel.iconUrl!.toString()),
@@ -52,7 +53,7 @@ class CourseCardArchived extends StatelessWidget {
           Wrap(
             children: [
               IconButton(
-                icon: Icon(Icons.upcoming),
+                icon: Icon(AppIconData.unArchive),
                 onPressed: () {
                   unArchived(courseModel.id);
                   Navigator.pop(context);

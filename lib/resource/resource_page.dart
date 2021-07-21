@@ -4,6 +4,7 @@ import 'package:administracao/course/course_tile.dart';
 import 'package:administracao/module/module_model.dart';
 import 'package:administracao/resource/resource_card.dart';
 import 'package:administracao/resource/resource_model.dart';
+import 'package:administracao/theme/app_icon.dart';
 import 'package:administracao/theme/app_text_styles.dart';
 import 'package:administracao/user/user_model.dart';
 import 'package:flutter/material.dart';
@@ -106,7 +107,7 @@ class ResourcePage extends StatelessWidget {
                           leading: teacher == null ||
                                   teacher!.photoURL == null ||
                                   teacher!.photoURL!.isEmpty
-                              ? Icon(Icons.favorite_outline_rounded)
+                              ? Icon(AppIconData.undefined)
                               : Container(
                                   height: 48,
                                   width: 48,

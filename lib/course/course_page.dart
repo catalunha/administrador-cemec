@@ -1,5 +1,6 @@
 import 'package:administracao/course/course_card_connector.dart';
 import 'package:administracao/course/course_model.dart';
+import 'package:administracao/theme/app_icon.dart';
 import 'package:flutter/material.dart';
 
 class CoursePage extends StatelessWidget {
@@ -31,7 +32,7 @@ class CoursePage extends StatelessWidget {
                             context,
                             '/course_archived',
                           ),
-                      icon: Icon(Icons.archive))
+                      icon: Icon(AppIconData.archived))
                 ],
               ),
             ),

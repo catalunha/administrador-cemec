@@ -1,3 +1,4 @@
+import 'package:administracao/theme/app_icon.dart';
 import 'package:administracao/theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,7 @@ class CourseTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: courseModel?.iconUrl == null
-          ? Icon(Icons.favorite_outline_rounded)
+          ? Icon(AppIconData.undefined)
           : Container(
               height: 48,
               width: 48,

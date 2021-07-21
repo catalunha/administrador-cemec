@@ -1,3 +1,4 @@
+import 'package:administracao/theme/app_icon.dart';
 import 'package:administracao/user/user_model.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class PersonTile extends StatelessWidget {
     return person != null
         ? ListTile(
             leading: person!.photoURL == null
-                ? Icon(Icons.person_pin_outlined)
+                ? Icon(AppIconData.undefined)
                 : Tooltip(
                     message: 'id: ${person!.id}',
                     child: Container(

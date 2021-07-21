@@ -1,6 +1,7 @@
 import 'package:administracao/course/course_model.dart';
 import 'package:administracao/course/course_teacher_card_connector.dart';
 import 'package:administracao/teacher/teacher_all_connector.dart';
+import 'package:administracao/theme/app_icon.dart';
 import 'package:flutter/material.dart';
 
 import 'package:administracao/coordinator/coordinator_tile.dart';
@@ -65,7 +66,7 @@ class CourseCollegiatePage extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: Icon(AppIconData.addInCloud),
         onPressed: () async {
           getTeacher();
           await showDialog<void>(

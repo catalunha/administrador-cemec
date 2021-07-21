@@ -1,6 +1,7 @@
 import 'package:administracao/teacher/teacher_tile.dart';
 import 'package:administracao/teacher/teacher_list_connector.dart';
 import 'package:administracao/theme/app_colors.dart';
+import 'package:administracao/theme/app_icon.dart';
 import 'package:administracao/user/user_model.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +34,7 @@ class TeacherSearch extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Icon(
-                Icons.person_search_outlined,
+                AppIconData.search,
                 // color: AppColors.primary,
               ),
             ),
@@ -46,7 +47,7 @@ class TeacherSearch extends StatelessWidget {
               child: Column(
                 children: [
                   ListTile(
-                    leading: Icon(Icons.search),
+                    leading: Icon(AppIconData.search),
                     title: Text('Clique para buscar da lista'),
                     onTap: () async {
                       await showDialog<void>(
@@ -68,7 +69,7 @@ class TeacherSearch extends StatelessWidget {
                                 'Retirar este professor deste môdulo',
                                 textAlign: TextAlign.end,
                               ),
-                              trailing: Icon(Icons.delete_forever_outlined),
+                              trailing: Icon(AppIconData.delete),
                               onTap: onDeleteTeacher,
                             )
                           ],

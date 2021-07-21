@@ -30,8 +30,8 @@ class StreamDocsCourseAction extends ReduxAction<AppState> {
             .toList());
     streamList.listen((List<CourseModel> courseList) {
       print('--> StreamDocsCourseAction 2');
-      // dispatch(SetCourseListCourseAction(courseList: courseList));
-      dispatch(StreamCascadeCourseAction(courseList: courseList));
+      dispatch(SetCourseListCourseAction(courseList: courseList));
+      // dispatch(StreamCascadeCourseAction(courseList: courseList));
     });
     // BillState.billStream = streamList.listen((List<BillModel> billModelList) {
     //   dispatch(SetBillListBillAction(billModelList: billModelList));
@@ -41,20 +41,20 @@ class StreamDocsCourseAction extends ReduxAction<AppState> {
   }
 }
 
-class StreamCascadeCourseAction extends ReduxAction<AppState> {
-  final List<CourseModel> courseList;
+// class StreamCascadeCourseAction extends ReduxAction<AppState> {
+//   final List<CourseModel> courseList;
 
-  StreamCascadeCourseAction({required this.courseList});
-  @override
-  Future<AppState?> reduce() async {
-    await dispatch(SetCourseListCourseAction(courseList: courseList));
-    if (state.courseState.course != null) {
-      dispatch(SetCourseCourseAction(id: state.courseState.course!.id));
-    }
-    dispatch(GetCoordinatorListOfCourseListCourseAction());
-    return null;
-  }
-}
+//   StreamCascadeCourseAction({required this.courseList});
+//   @override
+//   Future<AppState?> reduce() async {
+//     await dispatch(SetCourseListCourseAction(courseList: courseList));
+//     if (state.courseState.course != null) {
+//       dispatch(SetCourseCourseAction(id: state.courseState.course!.id));
+//     }
+//     dispatch(GetCoordinatorListOfCourseListCourseAction());
+//     return null;
+//   }
+// }
 
 class SetCourseListCourseAction extends ReduxAction<AppState> {
   final List<CourseModel> courseList;
@@ -69,17 +69,17 @@ class SetCourseListCourseAction extends ReduxAction<AppState> {
     );
   }
 
-  // void after() {
-  //   if (state.courseState.course != null) {
-  //     dispatch(SetCourseCourseAction(id: state.courseState.course!.id));
-  //   }
-  //   dispatch(GetCoordinatorListOfCourseListCourseAction());
-  // }
+  void after() {
+    if (state.courseState.course != null) {
+      dispatch(SetCourseCourseAction(id: state.courseState.course!.id));
+      dispatch(GetCoordinatorListOfCourseListCourseAction());
+    }
+  }
 }
 
-class SetCourse1CourseAction extends ReduxAction<AppState> {
+class SetCourseCourseAction extends ReduxAction<AppState> {
   final String id;
-  SetCourse1CourseAction({
+  SetCourseCourseAction({
     required this.id,
   });
   @override
@@ -107,32 +107,32 @@ class SetCourse1CourseAction extends ReduxAction<AppState> {
     );
   }
 
-  // void after() async {
-  //   if (id.isNotEmpty) {
-  //     dispatch(SetCoordinatorCurrentCoordinatorAction(
-  //         id: state.courseState.course!.coordinatorUserId));
-  //     // await dispatch(GetCoordinatorOfCourseCourseAction(
-  //     //     coordinatorId: state.courseState.course!.coordinatorUserId));
-  //     await dispatch(GetDocsCollegiateCourseAction());
-  //   }
-  // }
-}
-
-class SetCourseCourseAction extends ReduxAction<AppState> {
-  final String id;
-
-  SetCourseCourseAction({required this.id});
-  @override
-  Future<AppState?> reduce() async {
-    dispatch(SetCourse1CourseAction(id: id));
+  void after() async {
     if (id.isNotEmpty) {
       dispatch(SetCoordinatorCurrentCoordinatorAction(
           id: state.courseState.course!.coordinatorUserId));
+      // await dispatch(GetCoordinatorOfCourseCourseAction(
+      //     coordinatorId: state.courseState.course!.coordinatorUserId));
       await dispatch(GetDocsCollegiateCourseAction());
     }
-    return null;
   }
 }
+
+// class SetCourseCourseAction extends ReduxAction<AppState> {
+//   final String id;
+
+//   SetCourseCourseAction({required this.id});
+//   @override
+//   Future<AppState?> reduce() async {
+//     dispatch(SetCourse1CourseAction(id: id));
+//     if (id.isNotEmpty) {
+//       dispatch(SetCoordinatorCurrentCoordinatorAction(
+//           id: state.courseState.course!.coordinatorUserId));
+//       await dispatch(GetDocsCollegiateCourseAction());
+//     }
+//     return null;
+//   }
+// }
 
 // class GetCoordinatorOfCourseCourseAction extends ReduxAction<AppState> {
 //   final String coordinatorId;

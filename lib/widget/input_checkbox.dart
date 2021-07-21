@@ -1,4 +1,5 @@
 import 'package:administracao/theme/app_colors.dart';
+import 'package:administracao/theme/app_icon.dart';
 import 'package:flutter/material.dart';
 
 class InputCheckBox extends StatelessWidget {
@@ -31,7 +32,7 @@ class InputCheckBox extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Icon(
-                Icons.check,
+                AppIconData.check,
                 // color: AppColors.primary,
               ),
             ),

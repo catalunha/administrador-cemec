@@ -1,6 +1,7 @@
 import 'package:administracao/coordinator/coordinator_tile.dart';
 import 'package:administracao/course/course_model.dart';
 import 'package:administracao/course/course_tile.dart';
+import 'package:administracao/theme/app_icon.dart';
 import 'package:administracao/theme/app_text_styles.dart';
 import 'package:administracao/user/user_model.dart';
 import 'package:flutter/material.dart';
@@ -23,22 +24,6 @@ class CourseCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          // ListTile(
-          //   leading: courseModel.iconUrl == null
-          //       ? Icon(Icons.favorite_outline_rounded)
-          //       : Container(
-          //           height: 48,
-          //           width: 48,
-          //           decoration: BoxDecoration(
-          //             borderRadius: BorderRadius.circular(5),
-          //             image: DecorationImage(
-          //               image: NetworkImage(courseModel.iconUrl!),
-          //             ),
-          //           ),
-          //         ),
-          //   title: Text('${courseModel.title}',
-          //       style: AppTextStyles.titleBoldHeading),
-          // ),
           CourseTile(
             courseModel: courseModel,
           ),
@@ -114,7 +99,7 @@ class CourseCard extends StatelessWidget {
             children: [
               IconButton(
                 tooltip: 'Professores deste curso',
-                icon: Icon(Icons.assignment_ind_outlined),
+                icon: Icon(AppIconData.teacher),
                 onPressed: () async {
                   Navigator.pushNamed(context, '/course_teacher',
                       arguments: courseModel.id);
@@ -122,7 +107,7 @@ class CourseCard extends StatelessWidget {
               ),
               IconButton(
                 tooltip: 'alunos deste curso',
-                icon: Icon(Icons.sentiment_satisfied_alt_outlined),
+                icon: Icon(AppIconData.student),
                 onPressed: () async {
                   Navigator.pushNamed(context, '/course_student',
                       arguments: courseModel.id);
@@ -138,7 +123,7 @@ class CourseCard extends StatelessWidget {
               // ),
               IconButton(
                 tooltip: 'Modulos deste curso',
-                icon: Icon(Icons.play_lesson_outlined),
+                icon: Icon(AppIconData.module),
                 onPressed: () async {
                   Navigator.pushNamed(context, '/module',
                       arguments: courseModel.id);

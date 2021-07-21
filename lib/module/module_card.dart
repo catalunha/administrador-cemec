@@ -1,5 +1,6 @@
 import 'package:administracao/module/module_model.dart';
 import 'package:administracao/teacher/teacher_tile.dart';
+import 'package:administracao/theme/app_icon.dart';
 import 'package:administracao/theme/app_text_styles.dart';
 import 'package:administracao/user/user_model.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class ModuleCard extends StatelessWidget {
           teacher != null
               ? TeacherTile(teacher: teacher!)
               : ListTile(
-                  leading: Icon(Icons.person_off_outlined),
+                  leading: Icon(AppIconData.undefined),
                 ),
           Padding(
             padding: const EdgeInsets.only(left: 10),
@@ -91,7 +92,7 @@ class ModuleCard extends StatelessWidget {
               //   },
               // ),
               IconButton(
-                icon: Icon(Icons.view_carousel_outlined),
+                icon: Icon(AppIconData.resourse),
                 onPressed: () async {
                   Navigator.pushNamed(context, '/resource',
                       arguments: moduleModel.id);
