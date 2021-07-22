@@ -1,10 +1,10 @@
-import 'package:administracao/coordinator/coordinator_tile.dart';
-import 'package:administracao/course/course_model.dart';
+import 'package:administracao/coordinator/controller/coordinator_tile.dart';
+import 'package:administracao/course/controller/course_model.dart';
 import 'package:administracao/course/course_tile.dart';
-import 'package:administracao/module/module_card_connector.dart';
-import 'package:administracao/module/module_model.dart';
+import 'package:administracao/module/controller/module_card_connector.dart';
+import 'package:administracao/module/controller/module_model.dart';
 import 'package:administracao/theme/app_text_styles.dart';
-import 'package:administracao/user/user_model.dart';
+import 'package:administracao/user/controller/user_model.dart';
 import 'package:flutter/material.dart';
 
 class ModulePage extends StatelessWidget {

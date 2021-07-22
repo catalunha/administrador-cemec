@@ -1,9 +1,9 @@
-import 'package:administracao/team/team_state.dart';
+import 'package:administracao/team/controller/team_state.dart';
 import 'package:administracao/theme/app_icon.dart';
 import 'package:flutter/material.dart';
 
 import 'package:administracao/team/person_card.dart';
-import 'package:administracao/user/user_model.dart';
+import 'package:administracao/user/controller/user_model.dart';
 
 class TeamPage extends StatelessWidget {
   final List<UserModel> people;

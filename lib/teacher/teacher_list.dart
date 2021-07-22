@@ -1,5 +1,5 @@
 import 'package:administracao/teacher/teacher_tile.dart';
-import 'package:administracao/user/user_model.dart';
+import 'package:administracao/user/controller/user_model.dart';
 import 'package:flutter/material.dart';
 
 class TeacherList extends StatelessWidget {

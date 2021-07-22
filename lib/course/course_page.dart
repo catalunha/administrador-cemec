@@ -1,5 +1,5 @@
-import 'package:administracao/course/course_card_connector.dart';
-import 'package:administracao/course/course_model.dart';
+import 'package:administracao/course/controller/course_card_connector.dart';
+import 'package:administracao/course/controller/course_model.dart';
 import 'package:administracao/theme/app_icon.dart';
 import 'package:flutter/material.dart';
 

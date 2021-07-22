@@ -1,4 +1,4 @@
-import 'package:administracao/resource/resource_model.dart';
+import 'package:administracao/resource/controller/resource_model.dart';
 import 'package:administracao/theme/app_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';

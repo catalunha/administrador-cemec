@@ -1,12 +1,12 @@
-import 'package:administracao/course/course_model.dart';
-import 'package:administracao/course/course_teacher_card_connector.dart';
-import 'package:administracao/teacher/teacher_all_connector.dart';
+import 'package:administracao/course/controller/course_model.dart';
+import 'package:administracao/course/controller/course_teacher_card_connector.dart';
+import 'package:administracao/teacher/controller/teacher_all_connector.dart';
 import 'package:administracao/theme/app_icon.dart';
 import 'package:flutter/material.dart';
 
-import 'package:administracao/coordinator/coordinator_tile.dart';
+import 'package:administracao/coordinator/controller/coordinator_tile.dart';
 import 'package:administracao/course/course_tile.dart';
-import 'package:administracao/user/user_model.dart';
+import 'package:administracao/user/controller/user_model.dart';
 
 class CourseCollegiatePage extends StatelessWidget {
   final List<UserModel> collegiate;

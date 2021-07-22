@@ -1,6 +1,6 @@
 import 'package:administracao/team/person_tile.dart';
 import 'package:administracao/theme/app_icon.dart';
-import 'package:administracao/user/user_model.dart';
+import 'package:administracao/user/controller/user_model.dart';
 import 'package:flutter/material.dart';
 
 class PersonCard extends StatelessWidget {

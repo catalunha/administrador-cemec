@@ -1,5 +1,5 @@
 import 'package:administracao/course/course_card.dart';
-import 'package:administracao/course/course_model.dart';
+import 'package:administracao/course/controller/course_model.dart';
 import 'package:administracao/theme/app_colors.dart';
 import 'package:administracao/theme/app_images.dart';
 import 'package:administracao/theme/app_text_styles.dart';

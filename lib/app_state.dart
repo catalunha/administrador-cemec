@@ -1,21 +1,21 @@
-import 'package:administracao/coordinator/coordinator_state.dart';
-import 'package:administracao/team/team_state.dart';
+import 'package:administracao/coordinator/controller/coordinator_state.dart';
+import 'package:administracao/team/controller/team_state.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:administracao/course/course_state.dart';
-import 'package:administracao/login/login_state.dart';
-import 'package:administracao/module/module_state.dart';
-import 'package:administracao/resource/resource_state.dart';
-import 'package:administracao/upload/upload_state.dart';
-import 'package:administracao/teacher/teacher_state.dart';
-import 'package:administracao/user/user_state.dart';
+import 'package:administracao/course/controller/course_state.dart';
+import 'package:administracao/login/controller/login_state.dart';
+import 'package:administracao/module/controller/module_state.dart';
+import 'package:administracao/resource/controller/resource_state.dart';
+import 'package:administracao/upload/controller/upload_state.dart';
+import 'package:administracao/teacher/controller/teacher_state.dart';
+import 'package:administracao/user/controller/user_state.dart';
 
 class AppState {
   final Wait wait;
   final LoginState loginState;
   final UserState userState;
+  final TeamState teamState;
   final TeacherState teacherState;
   final CoordinatorState coordinatorState;
-  final TeamState teamState;
   final UploadState uploadState;
   final CourseState courseState;
   final ModuleState moduleState;

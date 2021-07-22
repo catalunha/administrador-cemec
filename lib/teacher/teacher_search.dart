@@ -1,8 +1,8 @@
 import 'package:administracao/teacher/teacher_tile.dart';
-import 'package:administracao/teacher/teacher_list_connector.dart';
+import 'package:administracao/teacher/controller/teacher_list_connector.dart';
 import 'package:administracao/theme/app_colors.dart';
 import 'package:administracao/theme/app_icon.dart';
-import 'package:administracao/user/user_model.dart';
+import 'package:administracao/user/controller/user_model.dart';
 import 'package:flutter/material.dart';
 
 class TeacherSearch extends StatelessWidget {

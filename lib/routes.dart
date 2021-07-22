@@ -1,15 +1,15 @@
-import 'package:administracao/course/course_addedit_connector.dart';
-import 'package:administracao/course/course_archived_connector.dart';
-import 'package:administracao/course/course_connector.dart';
-import 'package:administracao/course/course_student_list_connector.dart';
-import 'package:administracao/course/course_collegiate_connector.dart';
-import 'package:administracao/module/module_connector.dart';
-import 'package:administracao/resource/resource_connector.dart';
-import 'package:administracao/team/team_page_connector.dart';
+import 'package:administracao/course/controller/course_addedit_connector.dart';
+import 'package:administracao/course/controller/course_archived_connector.dart';
+import 'package:administracao/course/controller/course_connector.dart';
+import 'package:administracao/course/controller/course_student_list_connector.dart';
+import 'package:administracao/course/controller/course_collegiate_connector.dart';
+import 'package:administracao/module/controller/module_connector.dart';
+import 'package:administracao/resource/controller/resource_connector.dart';
+import 'package:administracao/team/controller/team_page_connector.dart';
 import 'package:flutter/material.dart';
-import 'package:administracao/home/home_page_connector.dart';
-import 'package:administracao/login/login_connector.dart';
-import 'package:administracao/splash/splash_connector.dart';
+import 'package:administracao/home/controller/home_page_connector.dart';
+import 'package:administracao/login/controller/login_connector.dart';
+import 'package:administracao/splash/controller/splash_connector.dart';
 
 class Routes {
   static final routes = {
