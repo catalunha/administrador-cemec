@@ -15,7 +15,7 @@ class HomePageConnector extends StatelessWidget {
       builder: (context, vm) => HomePage(
         signOut: vm.signOut,
         photoUrl: vm.photoUrl,
-        phoneNumber: vm.phoneNumber,
+        // phoneNumber: vm.phoneNumber,
         displayName: vm.displayName,
         uid: vm.uid,
         id: vm.id,
@@ -31,7 +31,7 @@ class HomeViewModelFactory extends VmFactory<AppState, HomePageConnector> {
   HomeViewModel fromStore() => HomeViewModel(
         signOut: () => dispatch(SignOutLoginAction()),
         photoUrl: state.userState.userCurrent!.photoURL ?? '',
-        phoneNumber: state.userState.userCurrent!.phoneNumber ?? '',
+        // // phoneNumber: state.userState.userCurrent!.phoneNumber ?? '',
         displayName: state.userState.userCurrent!.displayName ?? '',
         email: state.userState.userCurrent!.email,
         uid: state.loginState.userFirebaseAuth?.uid ?? '',
@@ -44,14 +44,14 @@ class HomeViewModel extends Vm {
 
   final String displayName;
   final String photoUrl;
-  final String phoneNumber;
+  // final String phoneNumber;
   final String email;
   final String uid;
   final String id;
   HomeViewModel({
     required this.signOut,
     required this.photoUrl,
-    required this.phoneNumber,
+    // required this.phoneNumber,
     required this.displayName,
     required this.email,
     required this.uid,
@@ -59,7 +59,7 @@ class HomeViewModel extends Vm {
   }) : super(
           equals: [
             photoUrl,
-            phoneNumber,
+            // phoneNumber,
             displayName,
             email,
             uid,
