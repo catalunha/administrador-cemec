@@ -72,8 +72,8 @@ class SetCourseListCourseAction extends ReduxAction<AppState> {
   void after() {
     if (state.courseState.course != null) {
       dispatch(SetCourseCourseAction(id: state.courseState.course!.id));
-      dispatch(GetCoordinatorListOfCourseListCourseAction());
     }
+    dispatch(GetCoordinatorListOfCourseListCourseAction());
   }
 }
 

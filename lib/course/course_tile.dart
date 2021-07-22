@@ -14,21 +14,29 @@ class CourseTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: courseModel?.iconUrl == null
-          ? Icon(AppIconData.undefined)
-          : Container(
-              height: 48,
-              width: 48,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                image: DecorationImage(
-                  image: NetworkImage(courseModel!.iconUrl!),
-                ),
-              ),
+    return courseModel != null
+        ? ListTile(
+            leading: courseModel!.iconUrl == null
+                ? Icon(AppIconData.undefined)
+                : ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.network(
+                      courseModel!.iconUrl!,
+                      height: 58,
+                      width: 58,
+                    ),
+                  ),
+            title:
+                Text(courseModel!.title, style: AppTextStyles.titleBoldHeading),
+            // subtitle: Text(
+            //     'Com ${courseModel?.moduleOrder?.length} môdulos\ncourseId: ${courseModel!.id}'),
+            subtitle: Text('courseId: ${courseModel!.id}'),
+          )
+        : ListTile(
+            leading: Icon(
+              AppIconData.undefined,
             ),
-      title:
-          Text('${courseModel?.title}', style: AppTextStyles.titleBoldHeading),
-    );
+            title: Text('Curso não disponivel'),
+          );
   }
 }

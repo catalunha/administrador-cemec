@@ -4,6 +4,7 @@ import 'package:administracao/course/course_tile.dart';
 import 'package:administracao/module/controller/module_model.dart';
 import 'package:administracao/resource/resource_card.dart';
 import 'package:administracao/resource/controller/resource_model.dart';
+import 'package:administracao/teacher/teacher_tile.dart';
 import 'package:administracao/theme/app_icon.dart';
 import 'package:administracao/theme/app_text_styles.dart';
 import 'package:administracao/user/controller/user_model.dart';
@@ -94,37 +95,39 @@ class ResourcePage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15)),
               elevation: 10,
               margin: EdgeInsets.only(left: 15, right: 15),
-
-              // color: Colors.lightBlueAccent,
-              child: Column(
-                children: [
-                  // Text(
-                  //   moduleModel.title,
-                  //   style: AppTextStyles.titleBoldHeading,
-                  // ),
-                  teacher != null
-                      ? ListTile(
-                          leading: teacher == null ||
-                                  teacher!.photoURL == null ||
-                                  teacher!.photoURL!.isEmpty
-                              ? Icon(AppIconData.undefined)
-                              : Container(
-                                  height: 48,
-                                  width: 48,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    image: DecorationImage(
-                                      image: NetworkImage(teacher!.photoURL!),
-                                    ),
-                                  ),
-                                ),
-                          title: Text('${teacher!.displayName}'),
-                          subtitle: Text(
-                              'email: ${teacher!.email}\nMobile:${teacher!.phoneNumber}'),
-                        )
-                      : Container(),
-                ],
+              child: TeacherTile(
+                teacher: teacher,
               ),
+              // color: Colors.lightBlueAccent,
+              // child: Column(
+              //   children: [
+              //     // Text(
+              //     //   moduleModel.title,
+              //     //   style: AppTextStyles.titleBoldHeading,
+              //     // ),
+              //     teacher != null
+              //         ? ListTile(
+              //             leading: teacher == null ||
+              //                     teacher!.photoURL == null ||
+              //                     teacher!.photoURL!.isEmpty
+              //                 ? Icon(AppIconData.undefined)
+              //                 : Container(
+              //                     height: 48,
+              //                     width: 48,
+              //                     decoration: BoxDecoration(
+              //                       borderRadius: BorderRadius.circular(5),
+              //                       image: DecorationImage(
+              //                         image: NetworkImage(teacher!.photoURL!),
+              //                       ),
+              //                     ),
+              //                   ),
+              //             title: Text('${teacher!.displayName}'),
+              //             subtitle: Text(
+              //                 'email: ${teacher!.email}\nMobile:${teacher!.phoneNumber}'),
+              //           )
+              //         : Container(),
+              //   ],
+              // ),
             ),
           ),
           Expanded(

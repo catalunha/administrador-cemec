@@ -1,3 +1,4 @@
+import 'package:administracao/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -35,7 +36,7 @@ class AppTextStyles {
   static final trailingBold = GoogleFonts.lexendDeca(
     fontSize: 16,
     fontWeight: FontWeight.w600,
-    // color: AppColors.heading,
+    // color: AppColors.delete,
   );
   static final buttonPrimary = GoogleFonts.inter(
     fontSize: 15,

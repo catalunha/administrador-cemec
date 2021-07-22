@@ -54,17 +54,41 @@ class ModulePage extends StatelessWidget {
           SizedBox(
             height: 5,
           ),
+          // Expanded(
+          //   child: SingleChildScrollView(
+          //     child: Column(
+          //       children: moduleModelList
+          //           .map((e) => ModuleCardConnector(moduleModel: e))
+          //           .toList(),
+          //     ),
+          //   ),
+          // ),
           Expanded(
             child: SingleChildScrollView(
               child: Column(
-                children: moduleModelList
-                    .map((e) => ModuleCardConnector(moduleModel: e))
-                    .toList(),
+                children: buildItens(context),
               ),
             ),
           ),
         ],
       ),
     );
+  }
+
+  buildItens(BuildContext context) {
+    List<Widget> list = [];
+    Map<String, ModuleModel> map = Map.fromIterable(
+      moduleModelList,
+      key: (element) => element.id,
+      value: (element) => element,
+    );
+    for (var index in courseModel.moduleOrder!) {
+      if (map[index] != null) {
+        list.add(Container(
+            key: ValueKey(index),
+            child: ModuleCardConnector(moduleModel: map[index]!)));
+      }
+    }
+    return list;
   }
 }

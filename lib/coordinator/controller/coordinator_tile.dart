@@ -13,23 +13,36 @@ class CoordinatorTile extends StatelessWidget {
         ? ListTile(
             leading: coordinator!.photoURL == null
                 ? Icon(AppIconData.undefined)
-                : Tooltip(
-                    message: 'id: ${coordinator!.id}',
-                    child: Container(
-                      height: 48,
-                      width: 48,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        image: DecorationImage(
-                          image: NetworkImage(coordinator!.photoURL!),
-                        ),
-                      ),
+                : ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.network(
+                      coordinator!.photoURL!,
+                      height: 58,
+                      width: 58,
                     ),
                   ),
+            // : Tooltip(
+            //     message: 'id: ${coordinator!.id}',
+            //     child: Container(
+            //       height: 48,
+            //       width: 48,
+            //       decoration: BoxDecoration(
+            //         borderRadius: BorderRadius.circular(5),
+            //         image: DecorationImage(
+            //           image: NetworkImage(coordinator!.photoURL!),
+            //         ),
+            //       ),
+            //     ),
+            //   ),
             title: Text(coordinator!.displayName ?? ''),
             subtitle: Text(
-                'email: ${coordinator!.email}\nMobile: ${coordinator!.phoneNumber ?? ""}'),
+                'email: ${coordinator!.email}\nuserId: ${coordinator!.id}'),
           )
-        : Container();
+        : ListTile(
+            leading: Icon(
+              AppIconData.undefined,
+            ),
+            title: Text('Coordenador não disponivel'),
+          );
   }
 }
