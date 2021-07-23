@@ -130,41 +130,41 @@ class ResourcePage extends StatelessWidget {
               // ),
             ),
           ),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                children: resourceModelList
-                    .map((e) => ResourceCard(resourceModel: e))
-                    .toList(),
-              ),
-            ),
-          ),
           // Expanded(
           //   child: SingleChildScrollView(
           //     child: Column(
-          //       children: buildItens(context),
+          //       children: resourceModelList
+          //           .map((e) => ResourceCard(resourceModel: e))
+          //           .toList(),
           //     ),
           //   ),
           // ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: buildItens(context),
+              ),
+            ),
+          ),
         ],
       ),
     );
   }
 
-  // buildItens(context) {
-  //   List<Widget> list = [];
-  //   Map<String, ResourceModel> map = Map.fromIterable(
-  //     resourceModelList,
-  //     key: (element) => element.id,
-  //     value: (element) => element,
-  //   );
-  //   for (var index in moduleModel.resourceOrder!) {
-  //     if (map[index] != null) {
-  //       list.add(Container(
-  //           key: ValueKey(index),
-  //           child: ResourceCard(resourceModel: map[index]!)));
-  //     }
-  //   }
-  //   return list;
-  // }
+  buildItens(context) {
+    List<Widget> list = [];
+    Map<String, ResourceModel> map = Map.fromIterable(
+      resourceModelList,
+      key: (element) => element.id,
+      value: (element) => element,
+    );
+    for (var index in moduleModel.resourceOrder!) {
+      if (map[index] != null) {
+        list.add(Container(
+            key: ValueKey(index),
+            child: ResourceCard(resourceModel: map[index]!)));
+      }
+    }
+    return list;
+  }
 }
