@@ -1,3 +1,4 @@
+import 'package:administracao/module/controller/module_state.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:administracao/app_state.dart';
@@ -28,9 +29,21 @@ import 'package:administracao/module/controller/module_model.dart';
 //   }
 // }
 
+class ResetModuleStateModuleAction extends ReduxAction<AppState> {
+  ResetModuleStateModuleAction();
+  @override
+  AppState reduce() {
+    return state.copyWith(
+      moduleState: ModuleState.initialState(),
+    );
+  }
+}
+
 class StreamDocsModuleAction extends ReduxAction<AppState> {
   @override
   Future<AppState?> reduce() async {
+    dispatch(ResetModuleStateModuleAction());
+
     print('--> StreamDocsModuleAction');
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     Query<Map<String, dynamic>> collRef;

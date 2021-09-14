@@ -40,7 +40,7 @@ class PersonTile extends StatelessWidget {
             leading: Icon(
               AppIconData.undefined,
             ),
-            title: Text('Coordenador não disponivel'),
+            title: Text('administracao não disponivel'),
           );
   }
 }

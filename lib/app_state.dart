@@ -1,4 +1,5 @@
 import 'package:administracao/coordinator/controller/coordinator_state.dart';
+import 'package:administracao/situation/controller/situation_state.dart';
 import 'package:administracao/team/controller/team_state.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:administracao/course/controller/course_state.dart';
@@ -20,6 +21,8 @@ class AppState {
   final CourseState courseState;
   final ModuleState moduleState;
   final ResourceState resourceState;
+  final SituationState situationState;
+
   AppState({
     required this.wait,
     required this.loginState,
@@ -31,6 +34,7 @@ class AppState {
     required this.courseState,
     required this.moduleState,
     required this.resourceState,
+    required this.situationState,
   });
 
   static AppState initialState() => AppState(
@@ -44,6 +48,7 @@ class AppState {
         courseState: CourseState.initialState(),
         moduleState: ModuleState.initialState(),
         resourceState: ResourceState.initialState(),
+        situationState: SituationState.initialState(),
       );
   AppState copyWith({
     Wait? wait,
@@ -56,6 +61,7 @@ class AppState {
     CourseState? courseState,
     ModuleState? moduleState,
     ResourceState? resourceState,
+    SituationState? situationState,
   }) {
     return AppState(
       wait: wait ?? this.wait,
@@ -68,6 +74,7 @@ class AppState {
       courseState: courseState ?? this.courseState,
       moduleState: moduleState ?? this.moduleState,
       resourceState: resourceState ?? this.resourceState,
+      situationState: situationState ?? this.situationState,
     );
   }
 
@@ -85,6 +92,7 @@ class AppState {
         other.teamState == teamState &&
         other.userState == userState &&
         other.resourceState == resourceState &&
+        other.situationState == situationState &&
         other.wait == wait;
   }
 
@@ -99,6 +107,7 @@ class AppState {
         teacherState.hashCode ^
         teamState.hashCode ^
         resourceState.hashCode ^
+        situationState.hashCode ^
         wait.hashCode;
   }
 }

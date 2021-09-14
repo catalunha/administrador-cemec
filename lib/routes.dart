@@ -5,6 +5,7 @@ import 'package:administracao/course/controller/course_student_list_connector.da
 import 'package:administracao/course/controller/course_collegiate_connector.dart';
 import 'package:administracao/module/controller/module_connector.dart';
 import 'package:administracao/resource/controller/resource_connector.dart';
+import 'package:administracao/situation/controller/situation_connector.dart';
 import 'package:administracao/team/controller/team_page_connector.dart';
 import 'package:flutter/material.dart';
 import 'package:administracao/home/controller/home_page_connector.dart';
@@ -34,5 +35,8 @@ class Routes {
           moduleId: ModalRoute.of(context)!.settings.arguments.toString(),
         ),
     '/team': (BuildContext context) => TeamPageConnector(),
+    '/situation': (BuildContext context) => SituationConnector(
+          moduleId: ModalRoute.of(context)!.settings.arguments.toString(),
+        ),
   };
 }

@@ -6,7 +6,6 @@ import 'package:administracao/module/controller/module_model.dart';
 import 'package:administracao/resource/controller/resource_action.dart';
 import 'package:administracao/resource/controller/resource_model.dart';
 import 'package:administracao/resource/resource_page.dart';
-import 'package:administracao/teacher/controller/teacher_action.dart';
 import 'package:administracao/user/controller/user_model.dart';
 import 'package:flutter/material.dart';
 

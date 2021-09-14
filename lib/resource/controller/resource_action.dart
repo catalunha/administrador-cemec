@@ -1,3 +1,4 @@
+import 'package:administracao/module/controller/module_state.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:administracao/app_state.dart';
@@ -31,6 +32,7 @@ class StreamDocsResourceAction extends ReduxAction<AppState> {
   @override
   Future<AppState?> reduce() async {
     print('--> StreamDocsResourceAction');
+
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     Query<Map<String, dynamic>> collRef;
     collRef = firebaseFirestore
