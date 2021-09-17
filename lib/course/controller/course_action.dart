@@ -1,5 +1,6 @@
 import 'package:administracao/coordinator/controller/coordinator_action.dart';
 import 'package:administracao/course/controller/course_state.dart';
+import 'package:administracao/student/controller/student_action.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -114,6 +115,7 @@ class SetCourseCourseAction extends ReduxAction<AppState> {
       // await dispatch(GetCoordinatorOfCourseCourseAction(
       //     coordinatorId: state.courseState.course!.coordinatorUserId));
       await dispatch(GetDocsCollegiateCourseAction());
+      await dispatch(ReadDocsStudentOfCourseStudentAction());
     }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:administracao/coordinator/controller/coordinator_state.dart';
 import 'package:administracao/situation/controller/situation_state.dart';
+import 'package:administracao/student/controller/student_state.dart';
 import 'package:administracao/team/controller/team_state.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:administracao/course/controller/course_state.dart';
@@ -22,6 +23,7 @@ class AppState {
   final ModuleState moduleState;
   final ResourceState resourceState;
   final SituationState situationState;
+  final StudentState studentState;
 
   AppState({
     required this.wait,
@@ -35,6 +37,7 @@ class AppState {
     required this.moduleState,
     required this.resourceState,
     required this.situationState,
+    required this.studentState,
   });
 
   static AppState initialState() => AppState(
@@ -49,6 +52,7 @@ class AppState {
         moduleState: ModuleState.initialState(),
         resourceState: ResourceState.initialState(),
         situationState: SituationState.initialState(),
+        studentState: StudentState.initialState(),
       );
   AppState copyWith({
     Wait? wait,
@@ -62,6 +66,7 @@ class AppState {
     ModuleState? moduleState,
     ResourceState? resourceState,
     SituationState? situationState,
+    StudentState? studentState,
   }) {
     return AppState(
       wait: wait ?? this.wait,
@@ -75,6 +80,7 @@ class AppState {
       moduleState: moduleState ?? this.moduleState,
       resourceState: resourceState ?? this.resourceState,
       situationState: situationState ?? this.situationState,
+      studentState: studentState ?? this.studentState,
     );
   }
 
@@ -83,6 +89,7 @@ class AppState {
     if (identical(this, other)) return true;
 
     return other is AppState &&
+        other.studentState == studentState &&
         other.moduleState == moduleState &&
         other.courseState == courseState &&
         other.uploadState == uploadState &&
@@ -99,6 +106,7 @@ class AppState {
   @override
   int get hashCode {
     return courseState.hashCode ^
+        studentState.hashCode ^
         moduleState.hashCode ^
         uploadState.hashCode ^
         loginState.hashCode ^

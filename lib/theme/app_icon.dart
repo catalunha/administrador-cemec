@@ -22,6 +22,8 @@ class AppIconData {
   static const search = Icons.search;
   static const check = Icons.check;
   static const delete = Icons.delete_forever_outlined;
+  static const check_box_on = Icons.check_box_outlined;
+  static const check_box_off = Icons.check_box_outline_blank;
 
   static const people = Icons.people;
   static const coordinator = Icons.badge_outlined;

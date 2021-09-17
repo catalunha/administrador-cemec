@@ -2,33 +2,33 @@ import 'package:administracao/theme/app_icon.dart';
 import 'package:administracao/user/controller/user_model.dart';
 import 'package:flutter/material.dart';
 
-class TeacherTile extends StatelessWidget {
-  final UserModel? teacher;
-  const TeacherTile({Key? key, required this.teacher}) : super(key: key);
+class StudentTile extends StatelessWidget {
+  final UserModel? user;
+  const StudentTile({Key? key, required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return teacher != null
+    return user != null
         ? ListTile(
-            leading: teacher!.photoURL == null
+            leading: user!.photoURL == null
                 ? Icon(AppIconData.undefined)
                 : ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.network(
-                      teacher!.photoURL!,
+                      user!.photoURL!,
                       height: 58,
                       width: 58,
                     ),
                   ),
-            title: Text(teacher!.displayName ?? ''),
-            subtitle: Text('email: ${teacher!.email}\nuserId: ${teacher!.id}'),
-            trailing: Icon(AppIconData.teacher),
+            title: Text(user!.displayName ?? ''),
+            subtitle: Text('email: ${user!.email}\nuserId: ${user!.id}'),
+            trailing: Icon(AppIconData.student),
           )
         : ListTile(
             leading: Icon(
               AppIconData.undefined,
             ),
-            title: Text('Professor não disponivel'),
+            title: Text('Estudante não disponivel'),
           );
   }
 }

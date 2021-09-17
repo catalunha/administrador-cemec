@@ -7,14 +7,18 @@ import 'package:url_launcher/url_launcher.dart';
 
 class SituationCard extends StatelessWidget {
   final SituationModel situationModel;
+  final Color? color;
+
   const SituationCard({
     Key? key,
     required this.situationModel,
+    this.color,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: color ?? Theme.of(context).bottomAppBarColor,
       elevation: 10,
       child: Column(
         mainAxisSize: MainAxisSize.min,

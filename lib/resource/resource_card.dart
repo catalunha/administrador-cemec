@@ -5,15 +5,17 @@ import 'package:flutter/material.dart';
 
 class ResourceCard extends StatelessWidget {
   final ResourceModel resourceModel;
-
+  final Color? color;
   const ResourceCard({
     Key? key,
     required this.resourceModel,
+    this.color,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: color ?? Theme.of(context).bottomAppBarColor,
       elevation: 10,
       child: Column(
         mainAxisSize: MainAxisSize.min,

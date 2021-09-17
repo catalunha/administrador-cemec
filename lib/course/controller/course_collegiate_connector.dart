@@ -63,5 +63,7 @@ class CourseCollegiateViewModel extends Vm {
     required this.getTeacher,
   }) : super(equals: [
           collegiate,
+          coordinator,
+          courseModel,
         ]);
 }
